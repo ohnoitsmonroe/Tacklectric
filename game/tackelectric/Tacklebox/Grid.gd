@@ -13,7 +13,7 @@ extends Node3D
 
 @export var setupEntities : SetupEntities = null
 
-var cellRef := preload("res://tacklebox/cell.tscn")
+var cellRef := preload("res://tacklebox/Cell.tscn")
 
 # The cells dictionary saves reference to each cell node
 # by a Vector2 of its coordinate
