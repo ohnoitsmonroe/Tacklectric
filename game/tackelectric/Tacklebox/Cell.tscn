@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://clsflogdwujbv"]
+
+[ext_resource type="Script" path="res://Tacklebox/Cell.gd" id="1_a8nmq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tlta5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1kxd"]
+transparency = 1
+albedo_color = Color(0.493545, 0.493546, 0.493546, 0.184314)
+
+[node name="Cell" type="Node3D"]
+script = ExtResource("1_a8nmq")
+
+[node name="DebugCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_tlta5")
+surface_material_override/0 = SubResource("StandardMaterial3D_y1kxd")
