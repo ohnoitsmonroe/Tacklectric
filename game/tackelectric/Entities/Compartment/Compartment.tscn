@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://crl1xgwujjc3c"]
+
+[ext_resource type="Script" path="res://Entities/Compartment/compartment.gd" id="1_0u0ji"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uegou"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mddw"]
+albedo_color = Color(0.791814, 8.70204e-05, 0.642334, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pny3m"]
+size = Vector3(1.1, 0.6, 1.1)
+
+[node name="Compartment" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_0u0ji")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_uegou")
+surface_material_override/0 = SubResource("StandardMaterial3D_6mddw")
+
+[node name="MouseDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MouseDetector"]
+shape = SubResource("BoxShape3D_pny3m")
+
+[connection signal="mouse_entered" from="MouseDetector" to="." method="mouseHovered"]
+[connection signal="mouse_exited" from="MouseDetector" to="." method="mouseNotHovered"]
