@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=5 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment.tscn" id="2_ssio0"]
+[ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
 
 [node name="Tacklebox" type="Node3D"]
 
@@ -11,6 +12,7 @@ setupEntities = NodePath("../SetupEntities")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 8, 2.5)
+script = ExtResource("2_vle1h")
 
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")

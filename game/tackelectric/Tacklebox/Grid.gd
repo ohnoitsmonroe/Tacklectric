@@ -9,7 +9,7 @@ extends Node3D
 @export var height := 5
 
 # Grid Separation is multiplied by the cell's position
-@export var gridSeparation := 1.5
+#@export var gridSeparation := 1.5
 
 @export var setupEntities : SetupEntities = null
 
@@ -34,7 +34,7 @@ func createGrid():
 			
 			cells[cellPos] = newCell
 			
-			newCell.position = Vector3(cellPos.x * gridSeparation, global_position.y, cellPos.y * gridSeparation)
+			newCell.position = Vector3(cellPos.x * g.gridSeparation, global_position.y, cellPos.y * g.gridSeparation)
 
 
 # Add all the objects from the setup objects to the grid
