@@ -21,7 +21,7 @@ var cells := {}
 
 func _ready():
 	createGrid()
-	addSetupEntities()
+	addEntities(setupEntities)
 
 
 func createGrid():
@@ -38,9 +38,9 @@ func createGrid():
 
 
 # Add all the objects from the setup objects to the grid
-func addSetupEntities():
-	if is_instance_valid(setupEntities):
-		for entity in setupEntities.get_children():
+func addEntities(entitiesToAdd):
+	if is_instance_valid(entitiesToAdd):
+		for entity in entitiesToAdd.get_children():
 			if entity is Entity:
 				var newEntity = entity.duplicate()
 				var gridPos = entity.StartingCoord
