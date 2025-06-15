@@ -17,12 +17,3 @@ script = ExtResource("2_j68ua")
 
 [node name="Compartment" parent="SetupEntities" instance=ExtResource("2_ssio0")]
 StartingCoord = Vector2(2, 2)
-
-[node name="Compartment2" parent="SetupEntities" instance=ExtResource("2_ssio0")]
-StartingCoord = Vector2(1, 2)
-
-[node name="Compartment3" parent="SetupEntities" instance=ExtResource("2_ssio0")]
-StartingCoord = Vector2(4, 2)
-
-[node name="Compartment4" parent="SetupEntities" instance=ExtResource("2_ssio0")]
-StartingCoord = Vector2(6, 4)
