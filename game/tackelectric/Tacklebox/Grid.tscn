@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cap2r0kkoynwh"]
+
+[ext_resource type="Script" path="res://Tacklebox/Grid.gd" id="1_pcs4f"]
+
+[node name="Grid" type="Node3D"]
+script = ExtResource("1_pcs4f")
