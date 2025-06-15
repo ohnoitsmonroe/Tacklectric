@@ -2,6 +2,7 @@ extends Node3D
 class_name Cell
 
 @export var held_entity : Entity = null
+@export var held_compartment : Compartment = null
 
 func addEntity(entity):
 	add_child(entity)
