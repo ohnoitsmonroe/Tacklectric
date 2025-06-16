@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b73to68qlbyca"]
+
+[ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_0kcwx"]
+[ext_resource type="ArrayMesh" uid="uid://c8bmfri8t31yg" path="res://Entities/Compartment/singleCompartment_1x1_Cube_006.res" id="2_d8dv3"]
+
+[node name="compartment_2x1" instance=ExtResource("1_0kcwx")]
+Size = Vector2(2, 1)
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = ExtResource("2_d8dv3")
+surface_material_override/0 = null

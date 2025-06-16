@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bht4jssm7m2xr"]
+
+[ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_wtttd"]
+[ext_resource type="ArrayMesh" uid="uid://7pcsrd0hohtp" path="res://Entities/Compartment/singleSpace_Cube_004.res" id="2_bhl8k"]
+
+[node name="Compartment_1x1" instance=ExtResource("1_wtttd")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = ExtResource("2_bhl8k")
+surface_material_override/0 = null
