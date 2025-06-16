@@ -7,7 +7,6 @@ var gridPos := Vector2(0,0)
 
 func setEntity(entity):
 	held_entity = entity
-	print("Cell: Added entity")
 
 func removeEntity():
 	held_entity = null
