@@ -1,9 +1,5 @@
-extends Node
+extends Button
 
-var camera = null
-var game = null
-
-@export var gridSeparation := 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

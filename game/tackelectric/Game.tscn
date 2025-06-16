@@ -1,12 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=3 format=3 uid="uid://cl7in4ymx2jux"]
 
-[ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_0j38j"]
+[ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
+[ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
 
 [node name="game" type="Node"]
-
-[node name="tacklebox" parent="." instance=ExtResource("1_0j38j")]
+script = ExtResource("1_s32mu")
+menu = ExtResource("2_tttft")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 2.18557e-08, -0.5, 0.433013, -0.5, 0.75, -0.25, -0.866025, -0.433013, 0, 4, 0)
 
-[editable path="tacklebox"]
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
