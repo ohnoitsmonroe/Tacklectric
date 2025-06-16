@@ -21,7 +21,7 @@ var cells := {}
 
 func _ready():
 	createGrid()
-	addEntities(setupEntities)
+	addEntitiesFromSetup(setupEntities)
 
 
 func createGrid():
@@ -37,10 +37,12 @@ func createGrid():
 			newCell.position = Vector3(cellPos.x * g.gridSeparation, global_position.y, cellPos.y * g.gridSeparation)
 
 
+
+
 # Add all the objects from the setup objects to the grid
-func addEntities(entitiesToAdd):
-	if is_instance_valid(entitiesToAdd):
-		for entity in entitiesToAdd.get_children():
+func addEntitiesFromSetup(setupEntities):
+	if is_instance_valid(setupEntities):
+		for entity in setupEntities.get_children():
 			if entity is Entity:
 				var newEntity = entity.duplicate()
 				var gridPos = entity.StartingCoord
@@ -53,5 +55,11 @@ func addEntities(entitiesToAdd):
 				
 				else:
 					print("Grid: Cell grid does not have cell at " + str(gridPos))
+		
+		setupEntities.queue_free()
+		setupEntities = null
+		
 	else:
 		print("Grid: SetupEntities is unassigned!")
+
+	
