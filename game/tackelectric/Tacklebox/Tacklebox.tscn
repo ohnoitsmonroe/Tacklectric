@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=6 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
-[ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment.tscn" id="2_ssio0"]
 [ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
+[ext_resource type="PackedScene" uid="uid://bht4jssm7m2xr" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_67lbi"]
+[ext_resource type="PackedScene" uid="uid://b73to68qlbyca" path="res://Entities/Compartment/compartment_2x1.tscn" id="5_nbymj"]
 
 [node name="Tacklebox" type="Node3D"]
 
@@ -17,5 +18,8 @@ script = ExtResource("2_vle1h")
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")
 
-[node name="Compartment" parent="SetupEntities" instance=ExtResource("2_ssio0")]
-StartingCoord = Vector2(2, 2)
+[node name="Compartment_1x1" parent="SetupEntities" instance=ExtResource("4_67lbi")]
+StartingCoord = Vector2(1, 1)
+
+[node name="compartment_2x1" parent="SetupEntities" instance=ExtResource("5_nbymj")]
+StartingCoord = Vector2(4, 4)
