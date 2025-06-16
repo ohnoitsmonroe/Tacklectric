@@ -2,7 +2,7 @@ extends Node
 
 var camera = null
 
-@export var gridSeparation := 1.5
+@export var gridSeparation := .52
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
