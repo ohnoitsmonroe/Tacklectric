@@ -35,8 +35,7 @@ func createGrid():
 			cells[cellPos] = newCell
 			
 			newCell.position = Vector3(cellPos.x * g.gridSeparation, global_position.y, cellPos.y * g.gridSeparation)
-
-
+			newCell.gridPos = cellPos
 
 
 # Add all the objects from the setup objects to the grid
@@ -51,8 +50,24 @@ func addEntitiesFromSetup(setupEntities):
 					var cell = cells[gridPos]
 					
 					if cell is Cell:
-						cells[gridPos].addEntity(newEntity)
-				
+						cell.setEntity(newEntity)
+						add_child(newEntity)						
+						# Connect the moveEntity signal
+						newEntity.moveEntity.connect(moveEntity)
+						
+						setEntityAtCell(newEntity, cell)
+						
+						# Set the additional cells as being occupied
+						# if it's a multi-cell entity
+						if newEntity.Size != Vector2.ONE:
+							for y in newEntity.Size.y:
+								for x in newEntity.Size.x:
+									var anchorCell = newEntity.anchorCell
+									
+									if is_instance_valid(anchorCell):
+										var cellPos = anchorCell.gridPos
+										setCellEntity(cellPos + Vector2(x, y), newEntity)
+								
 				else:
 					print("Grid: Cell grid does not have cell at " + str(gridPos))
 		
@@ -62,4 +77,100 @@ func addEntitiesFromSetup(setupEntities):
 	else:
 		print("Grid: SetupEntities is unassigned!")
 
+
+# Connected to an entities moveEntity signal when it is added from Setup
+func moveEntity(entity:Entity, direction:Vector2):
+	var entitySize := entity.Size
+	
+	if is_instance_valid(entity.anchorCell):
+		var currentPos = entity.anchorCell.gridPos
+		var targetPos = currentPos + direction
+		
+		var cellsOpen := true
+		
+		var targetCells = []
+		var currentCells = []
+		
+		# Get all the cells that are currently occupied by the entity
+		# Then get all the cells that would be occupied by the entity in
+		# its target pos
+		for y in entitySize.y:
+			for x in entitySize.x:
+				targetCells.append(getCell(targetPos + Vector2(x,y)))
+				currentCells.append(getCell(currentPos + Vector2(x,y)))
+		
+		# Check all the target cells, and see if they are:
+		# 1. In the grid as a valid cell
+		# 2. Are open and empty
+		# 3. If they are occupied, make sure that the entity occupying
+		# isn't the current one
+		for cell in targetCells:
+			if cell != null:
+				if !checkOpenCell(cell.gridPos):
+					if getCellHeldEntity(cell.gridPos) != entity:
+						cellsOpen = false
+						continue
+			else:
+				cellsOpen = false
+				continue
+		
+		# Move the entity and update the current and target cells
+		if cellsOpen:
+			# Clear all the current cells
+			for cell in currentCells:
+				removeCellEntity(cell.gridPos)
+			
+			# Set all the target cell's references
+			for cell in targetCells:
+				setCellEntity(cell.gridPos, entity)
+			
+			# Move the entity
+			var targetCell = getCell(targetPos)
+			setEntityAtCell(entity, targetCell)
+
+
+# This just functions for 1x1 entities right now, where anything
+# with bigger sizes will need to update the additional cells in
+# another function
+# We may want to change this, for now I'm just gonna leave it
+func setEntityAtCell(entity:Entity, cell:Cell):
+	entity.global_position = cell.global_position
+	
+	# Set the anchorCell
+	entity.anchorCell = cell
+	
+	# Set the entity's held cell
+	cell.setEntity(entity)
+
+
+func getCell(cellPos:Vector2):
+	if cells.has(cellPos):
+		return cells[cellPos]
+	
+	return null
+
+
+func getCellHeldEntity(cellPos:Vector2):
+	if cells.has(cellPos):
+		return cells[cellPos].getEntity()
+	
+	return null
+
+
+func checkOpenCell(cellPos:Vector2):
+	if cells.has(cellPos):
+		if cells[cellPos].getEntity() == null:
+			return true
+	
+	return false
+
+
+func removeCellEntity(cellPos:Vector2):
+	if cells.has(cellPos):
+		cells[cellPos].removeEntity()
+
+
+func setCellEntity(cellPos:Vector2, entity:Entity):
+	if cells.has(cellPos):
+		cells[cellPos].setEntity(entity)
 	
