@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
 		if mouseHover:
 			selected = !selected
-			print("Compartment Location: ", compPos)
+			#print("Compartment Location: ", compPos)
 			
 	if selected:
 		if event.is_action_pressed("move_left"):
@@ -31,17 +31,11 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("move_down"):
 			moveComp(0, 1)
 
-#func moveComp(x, y, z):
-	#var newPos = compPos + Vector3(x, y, z)
-	#newPos = newPos.clamp(Vector3(0, 0, 0), Vector3(10.5, 0, 6))
-	#print("New pos: ", newPos)
-	#self.global_position = newPos
-	#compPos = newPos
-
 # This signal will be connected to the grid 
 # when it is made
 func moveComp(x,y):
 	emit_signal("moveEntity", self, Vector2(x,y))
+
 
 func mouseHovered():
 	mouseHover = true
