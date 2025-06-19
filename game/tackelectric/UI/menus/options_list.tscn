@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyyc4gnjhca30"]
+
+[ext_resource type="Script" path="res://UI/menus/volume_slider.gd" id="1_0jgfw"]
+
+[node name="OptionsList" type="VBoxContainer"]
+offset_right = 227.0
+offset_bottom = 16.0
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+script = ExtResource("1_0jgfw")
+
+[connection signal="mouse_exited" from="VolumeSlider" to="VolumeSlider" method="release_focus"]
+[connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="_on_value_changed"]

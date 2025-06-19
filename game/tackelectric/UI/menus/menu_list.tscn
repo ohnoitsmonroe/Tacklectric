@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1msks0f8mpgh"]
+[gd_scene load_steps=5 format=3 uid="uid://b1msks0f8mpgh"]
 
 [ext_resource type="Script" path="res://UI/menus/menu_list.gd" id="1_dikuh"]
 [ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="2_adjxm"]
 [ext_resource type="Script" path="res://UI/menus/button.gd" id="2_fbq1h"]
+[ext_resource type="PackedScene" uid="uid://cyyc4gnjhca30" path="res://UI/menus/options_list.tscn" id="3_ebpcf"]
 
 [node name="MenuList" type="VBoxContainer"]
 script = ExtResource("1_dikuh")
 tacklebox = ExtResource("2_adjxm")
+options = ExtResource("3_ebpcf")
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 2
@@ -18,3 +20,4 @@ layout_mode = 2
 text = "Options"
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
