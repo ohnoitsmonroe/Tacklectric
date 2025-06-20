@@ -29,7 +29,8 @@ var cells := {}
 func _ready():
 	clearReferenceGrid()
 	createGrid()
-	addEntitiesFromSetup(setupEntities)
+	await get_tree().create_timer(.1).timeout
+	addEntitiesFromSetup()
 
 
 func clearReferenceGrid():
@@ -41,6 +42,7 @@ func clearReferenceGrid():
 func createGrid():
 	for y in height:
 		for x in width:
+			
 			var newCell = cellRef.instantiate()
 			add_child(newCell)
 			
@@ -50,11 +52,10 @@ func createGrid():
 			
 			newCell.position = Vector3(cellPos.x * g.gridSeparation, global_position.y, cellPos.y * g.gridSeparation)
 			newCell.gridPos = cellPos
-			
 
 
 # Add all the objects from the setup objects to the grid
-func addEntitiesFromSetup(setupEntities):
+func addEntitiesFromSetup():
 	if is_instance_valid(setupEntities):
 		for entity in setupEntities.get_children():
 			if entity is Entity:
@@ -81,7 +82,7 @@ func addEntitiesFromSetup(setupEntities):
 							if entity.get_children().size() > 0:
 								for childEntity in entity.get_children():
 									if childEntity is Entity:
-										newEntity.addChildEntity(childEntity, childEntity.StartingCoord, cell.gridPos, self)
+										newEntity.addChildEntity(childEntity.duplicate(), childEntity.StartingCoord, cell.gridPos, self)
 						
 						# Set the additional cells as being occupied
 						# if it's a multi-cell entity
@@ -167,6 +168,10 @@ func setEntityAtCell(entity:Entity, cell:Cell):
 	
 	# Set the entity's held cell
 	cell.setEntity(entity)
+	
+	# Update the child entities if the entity is a compartment
+	if entity is Compartment:
+		entity.setChildEntityPositions(cell.gridPos)
 
 
 func spawnLine(cellPos:Vector2):
