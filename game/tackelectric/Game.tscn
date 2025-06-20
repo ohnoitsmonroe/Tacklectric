@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://levelInstanceTest.gd" id="1_ty45a"]
-[ext_resource type="PackedScene" uid="uid://c0i1eu8r3gea4" path="res://Tacklebox/tacklebox_test.tscn" id="2_rfssu"]
+[ext_resource type="PackedScene" uid="uid://dnfgyvri58q0a" path="res://Tacklebox/tacklebox_test_2.tscn" id="2_vttgf"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_ty45a")
-tacklebox = ExtResource("2_rfssu")
+tacklebox = ExtResource("2_vttgf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 2.18557e-08, -0.5, 0.433013, -0.5, 0.75, -0.25, -0.866025, -0.433013, 0, 4, 0)
