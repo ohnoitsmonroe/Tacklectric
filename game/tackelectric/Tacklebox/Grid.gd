@@ -1,4 +1,5 @@
 extends Node3D
+class_name Grid
 
 # Grid
 
@@ -14,6 +15,10 @@ extends Node3D
 @export var setupEntities : SetupEntities = null
 
 @export var cellRef : PackedScene = null
+
+@export var lineRef : PackedScene = null
+
+var currentLine = null
 
 # The cells dictionary saves reference to each cell node
 # by a Vector2 of its coordinate
@@ -51,11 +56,21 @@ func addEntitiesFromSetup(setupEntities):
 					
 					if cell is Cell:
 						cell.setEntity(newEntity)
-						add_child(newEntity)						
+						add_child(newEntity)
+						
 						# Connect the moveEntity signal
 						newEntity.moveEntity.connect(moveEntity)
 						
+						newEntity.spawnLine.connect(spawnLine)
+						
 						setEntityAtCell(newEntity, cell)
+						
+						# Setup any child entities of compartments
+						if entity is Compartment:
+							if entity.get_children().size() > 0:
+								for childEntity in entity.get_children():
+									if childEntity is Entity:
+										newEntity.addChildEntity(childEntity, childEntity.StartingCoord)
 						
 						# Set the additional cells as being occupied
 						# if it's a multi-cell entity
@@ -141,6 +156,15 @@ func setEntityAtCell(entity:Entity, cell:Cell):
 	
 	# Set the entity's held cell
 	cell.setEntity(entity)
+
+
+func spawnLine(cellPos:Vector2):
+	if lineRef != null:
+		var newLine = lineRef.instantiate()
+		
+		add_child(newLine)
+		currentLine = newLine
+		newLine.init(self, cellPos)
 
 
 func getCell(cellPos:Vector2):
