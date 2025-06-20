@@ -3,10 +3,38 @@ extends Node3D
 class_name Entity
 
 @export var Size := Vector2(1,1)
-@export var startingDirection := Vector2(0, 1)
 
-@export var startingCoord: Vector2i = Vector2i(0, 0): 
-		set = setWorldPositionFromCoordinate
+@export var StartingCoord: Vector2 = Vector2(0, 0): 
+		set(newCoord):
+			StartingCoord = newCoord
+			
+			if Engine.is_editor_hint():
+				var world_pos = Vector3(
+					StartingCoord.x * g.gridSeparation,
+					0,  # Keep Y at 0, or adjust if your grid has a specific height
+					StartingCoord.y * g.gridSeparation
+				)
+				
+				global_position = world_pos
+		get:
+			return StartingCoord
+
+enum Direction {
+	NORTH = 180,    
+	EAST = 90,   
+	SOUTH = 0,
+	WEST = 270    
+}
+
+@export var startingDirection: Direction = Direction.SOUTH: 
+	set(newDirection) :
+		startingDirection = newDirection
+	
+		if Engine.is_editor_hint():
+			global_rotation_degrees.y = startingDirection
+	get:
+		return startingDirection
+
 
 # When a fishing line checks the cell, it will try to find this
 # method, then it will check its own script for a matching method
@@ -26,14 +54,33 @@ signal moveEntity
 # do this in a better way
 signal spawnLine
 
-func setWorldPositionFromCoordinate(coord:Vector2i):
-	startingCoord = coord
+# Reapply these in the editor so the position and rotation
+# are saved
+func _ready():
+	if Engine.is_editor_hint():
+		StartingCoord = StartingCoord
+		startingDirection = startingDirection
+
+
+func setStartingDirection(value: Direction):
+	print("Entity setting starting direction")
+	startingDirection = value
 	
-	var world_pos = Vector3(
-		startingCoord.x * g.gridSeparation,
-		0,  # Keep Y at 0, or adjust if your grid has a specific height
-		startingCoord.y * g.gridSeparation
-	)
+	#var rotation_radians = deg_to_rad(float(startingDirection))
 	
 	if Engine.is_editor_hint():
-		global_position = world_pos
+		global_rotation_degrees.y = startingDirection
+
+
+func get_forward_vector() -> Vector2:
+	match startingDirection:
+		Direction.NORTH:
+			return Vector2(0, 1)
+		Direction.EAST:
+			return Vector2(1, 0)
+		Direction.SOUTH:
+			return Vector2(0, -1)
+		Direction.WEST:
+			return Vector2(-1, 0)
+		_:
+			return Vector2(0, -1)
