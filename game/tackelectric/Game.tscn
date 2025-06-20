@@ -6,6 +6,9 @@
 
 [node name="tacklebox" parent="." instance=ExtResource("1_0j38j")]
 
+[node name="Camera3D" parent="tacklebox" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.496307, 0.868147, 0, -0.868147, 0.496307, 1.71451, 3.00244, 3.43597)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 2.18557e-08, -0.5, 0.433013, -0.5, 0.75, -0.25, -0.866025, -0.433013, 0, 4, 0)
 
