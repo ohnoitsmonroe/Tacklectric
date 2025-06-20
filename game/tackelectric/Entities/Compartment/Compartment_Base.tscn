@@ -24,5 +24,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6mddw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MouseDetector"]
 shape = SubResource("BoxShape3D_pny3m")
 
+[node name="ChildEntities" type="Node3D" parent="."]
+
 [connection signal="mouse_entered" from="MouseDetector" to="." method="mouseHovered"]
 [connection signal="mouse_exited" from="MouseDetector" to="." method="mouseNotHovered"]

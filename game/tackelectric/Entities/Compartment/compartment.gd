@@ -11,6 +11,7 @@ var mouseHover := false
 var mouseDrag := false
 var selected := false
 
+
 func _ready():
 	setMeshColor(Color.GRAY)
 
@@ -30,6 +31,7 @@ func _input(event: InputEvent) -> void:
 			moveComp(0, -1)
 		elif event.is_action_pressed("move_down"):
 			moveComp(0, 1)
+
 
 # This signal will be connected to the grid 
 # when it is made
@@ -57,3 +59,7 @@ func setMeshColor(color:Color):
 		material.albedo_color = color
 	else:
 		print("Compartment: Mesh is not assigned!")
+
+
+func addChildEntity(childRef:Entity, startingCoord:Vector2):
+	pass 
