@@ -1,28 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=5 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
-[ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_67lbi"]
-[ext_resource type="PackedScene" uid="uid://crjs4aqt2lg06" path="res://Entities/Compartment/compartment_2x1.tscn" id="5_nbymj"]
+[ext_resource type="PackedScene" uid="uid://dd7k27d3it1xd" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
 
 [node name="Tacklebox" type="Node3D"]
 
-[node name="Grid" parent="." node_paths=PackedStringArray("setupEntities") instance=ExtResource("1_adigq")]
+[node name="Grid" parent="." node_paths=PackedStringArray("setupEntities", "referenceGrid") instance=ExtResource("1_adigq")]
 setupEntities = NodePath("../SetupEntities")
+referenceGrid = NodePath("../reference_grid")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.71451, 3.00244, 1.32281)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.715, 3.24, 1.16)
+current = true
 script = ExtResource("2_vle1h")
+
+[node name="reference_grid" parent="." instance=ExtResource("7_vae3t")]
 
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")
-
-[node name="Compartment_1x1" parent="SetupEntities" instance=ExtResource("4_67lbi")]
-StartingCoord = Vector2(2, 2)
-
-[node name="compartment_2x1" parent="SetupEntities" instance=ExtResource("5_nbymj")]
-StartingCoord = Vector2(3, 1)
-
-[node name="compartment_2x2" parent="SetupEntities" instance=ExtResource("5_nbymj")]
-StartingCoord = Vector2(4, 2)

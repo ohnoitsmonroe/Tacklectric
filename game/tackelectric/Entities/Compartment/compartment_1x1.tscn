@@ -7,6 +7,7 @@
 size = Vector3(0.6, 0.6, 0.6)
 
 [node name="Compartment_1x1" instance=ExtResource("1_wtttd")]
+StartingCoord = Vector2(0, 0)
 
 [node name="MeshInstance3D" parent="." index="0"]
 mesh = ExtResource("2_1sk2t")

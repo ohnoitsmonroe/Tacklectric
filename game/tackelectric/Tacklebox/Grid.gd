@@ -1,4 +1,5 @@
 extends Node3D
+class_name Grid
 
 # Grid
 
@@ -13,20 +14,35 @@ extends Node3D
 
 @export var setupEntities : SetupEntities = null
 
+@export var referenceGrid : Node3D = null
+
 @export var cellRef : PackedScene = null
+
+@export var lineRef : PackedScene = null
+
+var currentLine = null
 
 # The cells dictionary saves reference to each cell node
 # by a Vector2 of its coordinate
 var cells := {}
 
 func _ready():
+	clearReferenceGrid()
 	createGrid()
-	addEntitiesFromSetup(setupEntities)
+	await get_tree().create_timer(.1).timeout
+	addEntitiesFromSetup()
+
+
+func clearReferenceGrid():
+	if is_instance_valid(referenceGrid):
+		referenceGrid.queue_free()
+		referenceGrid = null
 
 
 func createGrid():
 	for y in height:
 		for x in width:
+			
 			var newCell = cellRef.instantiate()
 			add_child(newCell)
 			
@@ -39,23 +55,34 @@ func createGrid():
 
 
 # Add all the objects from the setup objects to the grid
-func addEntitiesFromSetup(setupEntities):
+func addEntitiesFromSetup():
 	if is_instance_valid(setupEntities):
 		for entity in setupEntities.get_children():
 			if entity is Entity:
 				var newEntity = entity.duplicate()
 				var gridPos = entity.StartingCoord
-				
+								
 				if cells.has(gridPos):
 					var cell = cells[gridPos]
 					
 					if cell is Cell:
 						cell.setEntity(newEntity)
-						add_child(newEntity)						
+						add_child(newEntity)
+						
 						# Connect the moveEntity signal
 						newEntity.moveEntity.connect(moveEntity)
 						
+						# Connect the spawnline signal
+						newEntity.spawnLine.connect(spawnLine)
+						
 						setEntityAtCell(newEntity, cell)
+						
+						# Setup any child entities of compartments
+						if entity is Compartment:
+							if entity.get_children().size() > 0:
+								for childEntity in entity.get_children():
+									if childEntity is Entity:
+										newEntity.addChildEntity(childEntity.duplicate(), childEntity.StartingCoord, cell.gridPos, self)
 						
 						# Set the additional cells as being occupied
 						# if it's a multi-cell entity
@@ -141,6 +168,19 @@ func setEntityAtCell(entity:Entity, cell:Cell):
 	
 	# Set the entity's held cell
 	cell.setEntity(entity)
+	
+	# Update the child entities if the entity is a compartment
+	if entity is Compartment:
+		entity.setChildEntityPositions(cell.gridPos)
+
+
+func spawnLine(cellPos:Vector2):
+	if lineRef != null:
+		var newLine = lineRef.instantiate()
+		
+		add_child(newLine)
+		currentLine = newLine
+		newLine.init(self, cellPos)
 
 
 func getCell(cellPos:Vector2):
