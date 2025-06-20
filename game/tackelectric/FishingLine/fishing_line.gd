@@ -39,7 +39,6 @@ func iterateLine():
 		var targetPos = currentCoord + currentDirection
 		var targetCell = grid.getCell(targetPos)
 
-		
 		if is_instance_valid(targetCell):
 
 			# Add a new segment if there isn't a current one
@@ -52,8 +51,19 @@ func iterateLine():
 			# Check for a line contact method from
 			# the cell's entity, like a lure's redirect
 			# or a fish head's completing function
+			
 			var targetEntity = targetCell.getEntity()
+			
 			if is_instance_valid(targetEntity):
+				# But first check if the entity is a compartment
+				# and if so, set the entity to the compartment's
+				# child entity
+				if targetEntity is Compartment:
+					var childEntity = targetEntity.getChildEntity(targetPos)
+					
+					if is_instance_valid(childEntity):
+						targetEntity = childEntity
+			
 				if "lineContactMethod" in targetEntity:
 					if is_instance_valid(currentSegment):
 						await currentSegment.extendedToNewCell
@@ -62,6 +72,9 @@ func iterateLine():
 						call(targetEntity.lineContactMethod, targetEntity)
 
 		else:
+			if is_instance_valid(currentSegment):
+				await currentSegment.extendedToNewCell
+
 			# Stop when it hits the edge
 			if is_instance_valid(currentSegment):
 				currentSegment.stopScale()
@@ -79,7 +92,6 @@ func addLineSegment(direction:Vector2):
 		
 		if is_instance_valid(cell):
 			lineSegment.global_position = cell.global_position
-			#print("Fishing line current direciton " + str(currentDirection))
 			lineSegment.setAngle(currentDirection)
 			currentSegment = lineSegment
 
@@ -89,6 +101,7 @@ func addLineSegment(direction:Vector2):
 func redirect(_entity):
 	if is_instance_valid(_entity):
 		if "startingDirection" in _entity:
+						
 			var entityDirection = _entity.get_forward_vector()
 			currentDirection = entityDirection * Vector2(1,-1)
 						
