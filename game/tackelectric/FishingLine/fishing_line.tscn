@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://5dui6rgpok7u"]
+
+[ext_resource type="Script" path="res://FishingLine/fishing_line.gd" id="1_e2yme"]
+[ext_resource type="PackedScene" uid="uid://btqnm4otujasf" path="res://FishingLine/LineSegment.tscn" id="2_2g0jl"]
+
+[node name="fishingLine" type="Node3D"]
+script = ExtResource("1_e2yme")
+lineSegmentRef = ExtResource("2_2g0jl")
