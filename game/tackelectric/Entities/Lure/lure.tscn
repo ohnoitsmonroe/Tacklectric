@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://csvfy2ksxqjsi"]
+
+[ext_resource type="Script" path="res://Entities/Lure/lure.gd" id="1_m50o3"]
+[ext_resource type="ArrayMesh" uid="uid://bbowc6s00wocc" path="res://Entities/Lure/Lure_Plane.res" id="2_pgwb6"]
+
+[node name="lure" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_m50o3")
+lineContactMethod = "redirect"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_pgwb6")
