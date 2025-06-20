@@ -29,7 +29,7 @@ func setAngle(direction:Vector2):
 	mesh.rotation_degrees.y = newRotation
 	
 	# Move the mesh back towards the start of the cell
-	mesh.position += Vector3((direction.x * (g.gridSeparation / 2.0)), 0, direction.y * (g.gridSeparation / 2.0))
+	mesh.position += Vector3((direction.x * (g.gridSeparation)), 0, direction.y * (g.gridSeparation))
 
 
 func stopScale():
