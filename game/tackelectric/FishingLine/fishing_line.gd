@@ -23,7 +23,7 @@ func init(newGrid:Grid, newStartingCoord:Vector2):
 
 
 func _ready():
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.01).timeout
 	iterateLine()
 
 
@@ -61,7 +61,6 @@ func iterateLine():
 					if has_method(targetEntity.lineContactMethod):
 						call(targetEntity.lineContactMethod, targetEntity)
 
-
 		else:
 			# Stop when it hits the edge
 			if is_instance_valid(currentSegment):
@@ -90,8 +89,9 @@ func addLineSegment(direction:Vector2):
 func redirect(_entity):
 	if is_instance_valid(_entity):
 		if "startingDirection" in _entity:
-			currentDirection = _entity.startingDirection
-			
+			var entityDirection = _entity.get_forward_vector()
+			currentDirection = entityDirection * Vector2(1,-1)
+						
 			# Wait for the segment to extend across the cell
 			if is_instance_valid(currentSegment):
 				await currentSegment.extendedToNewCell
