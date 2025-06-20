@@ -61,6 +61,7 @@ func addEntitiesFromSetup(setupEntities):
 						# Connect the moveEntity signal
 						newEntity.moveEntity.connect(moveEntity)
 						
+						# Connect the spawnline signal
 						newEntity.spawnLine.connect(spawnLine)
 						
 						setEntityAtCell(newEntity, cell)
@@ -70,7 +71,7 @@ func addEntitiesFromSetup(setupEntities):
 							if entity.get_children().size() > 0:
 								for childEntity in entity.get_children():
 									if childEntity is Entity:
-										newEntity.addChildEntity(childEntity, childEntity.StartingCoord)
+										newEntity.addChildEntity(childEntity, childEntity.StartingCoord, cell.gridPos, self)
 						
 						# Set the additional cells as being occupied
 						# if it's a multi-cell entity
