@@ -9,13 +9,15 @@ class_name Entity
 			StartingCoord = newCoord
 			
 			if Engine.is_editor_hint():
-				var world_pos = Vector3(
-					StartingCoord.x * g.gridSeparation,
-					0,  # Keep Y at 0, or adjust if your grid has a specific height
-					StartingCoord.y * g.gridSeparation
-				)
-				
-				global_position = world_pos
+					# Set the position based on the grid
+					var world_pos = Vector3(
+						StartingCoord.x * g.gridSeparation,
+						0,  # Keep Y at 0, or adjust if your grid has a specific height
+						StartingCoord.y * g.gridSeparation
+					)
+					
+					position = world_pos
+					
 		get:
 			return StartingCoord
 
@@ -60,16 +62,6 @@ func _ready():
 	if Engine.is_editor_hint():
 		StartingCoord = StartingCoord
 		startingDirection = startingDirection
-
-
-func setStartingDirection(value: Direction):
-	print("Entity setting starting direction")
-	startingDirection = value
-	
-	#var rotation_radians = deg_to_rad(float(startingDirection))
-	
-	if Engine.is_editor_hint():
-		global_rotation_degrees.y = startingDirection
 
 
 func get_forward_vector() -> Vector2:
