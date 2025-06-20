@@ -4,8 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://bbowc6s00wocc" path="res://Entities/Lure/Lure_Plane.res" id="2_pgwb6"]
 
 [node name="lure" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_m50o3")
+startingDirection = 180
 lineContactMethod = "redirect"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
