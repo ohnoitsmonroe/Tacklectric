@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=9 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
 [ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_67lbi"]
 [ext_resource type="PackedScene" uid="uid://crjs4aqt2lg06" path="res://Entities/Compartment/compartment_2x1.tscn" id="5_nbymj"]
+[ext_resource type="PackedScene" uid="uid://bvttia0s2ogkg" path="res://Entities/LineSpawnPoint/line_spawn_point.tscn" id="6_8p1sb"]
+[ext_resource type="PackedScene" uid="uid://csvfy2ksxqjsi" path="res://Entities/Lure/lure.tscn" id="7_cep58"]
+[ext_resource type="PackedScene" uid="uid://bsnpjv4irh2cv" path="res://Entities/fish.tscn" id="8_0237v"]
 
 [node name="Tacklebox" type="Node3D"]
 
@@ -21,8 +24,27 @@ script = ExtResource("2_j68ua")
 [node name="Compartment_1x1" parent="SetupEntities" instance=ExtResource("4_67lbi")]
 StartingCoord = Vector2(2, 2)
 
+[node name="lure" parent="SetupEntities/Compartment_1x1" instance=ExtResource("7_cep58")]
+
 [node name="compartment_2x1" parent="SetupEntities" instance=ExtResource("5_nbymj")]
 StartingCoord = Vector2(3, 1)
 
-[node name="compartment_2x2" parent="SetupEntities" instance=ExtResource("5_nbymj")]
-StartingCoord = Vector2(4, 2)
+[node name="lineSpawnPoint" parent="SetupEntities" instance=ExtResource("6_8p1sb")]
+
+[node name="lure" parent="SetupEntities" instance=ExtResource("7_cep58")]
+StartingCoord = Vector2(4, 0)
+
+[node name="lure2" parent="SetupEntities" instance=ExtResource("7_cep58")]
+StartingCoord = Vector2(4, 3)
+startingDirection = Vector2(1, 0)
+
+[node name="lure3" parent="SetupEntities" instance=ExtResource("7_cep58")]
+StartingCoord = Vector2(3, 4)
+startingDirection = Vector2(0, -1)
+
+[node name="lure4" parent="SetupEntities" instance=ExtResource("7_cep58")]
+StartingCoord = Vector2(1, 3)
+startingDirection = Vector2(-1, 0)
+
+[node name="fish" parent="SetupEntities" instance=ExtResource("8_0237v")]
+StartingCoord = Vector2(7, 3)
