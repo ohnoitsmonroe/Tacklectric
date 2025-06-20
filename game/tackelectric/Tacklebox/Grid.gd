@@ -14,6 +14,8 @@ class_name Grid
 
 @export var setupEntities : SetupEntities = null
 
+@export var referenceGrid : Node3D = null
+
 @export var cellRef : PackedScene = null
 
 @export var lineRef : PackedScene = null
@@ -25,8 +27,15 @@ var currentLine = null
 var cells := {}
 
 func _ready():
+	clearReferenceGrid()
 	createGrid()
 	addEntitiesFromSetup(setupEntities)
+
+
+func clearReferenceGrid():
+	if is_instance_valid(referenceGrid):
+		referenceGrid.queue_free()
+		referenceGrid = null
 
 
 func createGrid():
@@ -41,6 +50,7 @@ func createGrid():
 			
 			newCell.position = Vector3(cellPos.x * g.gridSeparation, global_position.y, cellPos.y * g.gridSeparation)
 			newCell.gridPos = cellPos
+			
 
 
 # Add all the objects from the setup objects to the grid
@@ -50,7 +60,7 @@ func addEntitiesFromSetup(setupEntities):
 			if entity is Entity:
 				var newEntity = entity.duplicate()
 				var gridPos = entity.StartingCoord
-				
+								
 				if cells.has(gridPos):
 					var cell = cells[gridPos]
 					
