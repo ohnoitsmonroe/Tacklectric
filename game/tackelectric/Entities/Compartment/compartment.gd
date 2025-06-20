@@ -1,3 +1,4 @@
+@tool
 extends Entity
 class_name Compartment
 
@@ -15,24 +16,26 @@ var childEntities := {}
 
 
 func _ready():
-	setMeshColor(Color.GRAY)
+	if not Engine.is_editor_hint():
+		setMeshColor(Color.GRAY)
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click"):
-		if mouseHover:
-			selected = !selected
-			#print("Compartment Location: ", compPos)
-			
-	if selected:
-		if event.is_action_pressed("move_left"):
-			moveComp(-1, 0)
-		elif event.is_action_pressed("move_right"):
-			moveComp(1, 0)
-		elif event.is_action_pressed("move_up"):
-			moveComp(0, -1)
-		elif event.is_action_pressed("move_down"):
-			moveComp(0, 1)
+	if not Engine.is_editor_hint():
+		if event.is_action_pressed("left_click"):
+			if mouseHover:
+				selected = !selected
+				#print("Compartment Location: ", compPos)
+				
+		if selected:
+			if event.is_action_pressed("move_left"):
+				moveComp(-1, 0)
+			elif event.is_action_pressed("move_right"):
+				moveComp(1, 0)
+			elif event.is_action_pressed("move_up"):
+				moveComp(0, -1)
+			elif event.is_action_pressed("move_down"):
+				moveComp(0, 1)
 
 
 # This signal will be connected to the grid 
