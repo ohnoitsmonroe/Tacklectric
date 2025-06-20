@@ -66,16 +66,35 @@ func setMeshColor(color:Color):
 		print("Compartment: Mesh is not assigned!")
 
 
-func addChildEntity(childRef:Entity, startingCompartmentCoord:Vector2, gridPos:Vector2, grid:Grid):
-	var newChild = childRef.duplicate()
-	$ChildEntities.add_child(newChild)
-	newChild.StartingCoord = startingCompartmentCoord
-	
-	# Set a reference to the child based on the gridPos
-	# This will be changed whenever the compartment is moved so
-	# there is always an updated position
-	childEntities[gridPos] = newChild
+func getChildEntity(gridPos:Vector2):
+	if not Engine.is_editor_hint():
+		if childEntities.has(gridPos):
+			return childEntities[gridPos]
+		
+		return null
 
-	var cell = grid.getCell(gridPos + startingCompartmentCoord).global_position
-	if is_instance_valid(cell):
-		newChild.global_position = cell.global_position
+
+func addChildEntity(childRef:Entity, startingCompartmentCoord:Vector2, gridPos:Vector2, grid:Grid):
+	if not Engine.is_editor_hint():
+		var newChild = childRef
+		$ChildEntities.add_child(newChild)
+		newChild.StartingCoord = startingCompartmentCoord
+		
+		# Set a reference to the child based on the gridPos
+		# This will be changed whenever the compartment is moved so
+		# there is always an updated position
+		childEntities[gridPos + startingCompartmentCoord] = newChild
+
+		var cell = grid.getCell(gridPos + startingCompartmentCoord)
+		
+		if is_instance_valid(cell):
+			newChild.global_position = cell.global_position
+
+
+# Reset all the references to the child entity position
+# after being moved to a new location
+func setChildEntityPositions(newStartingCoord:Vector2):
+	if not Engine.is_editor_hint():
+		childEntities = {}
+		for child in $ChildEntities.get_children():
+			childEntities[newStartingCoord + child.StartingCoord] = child
