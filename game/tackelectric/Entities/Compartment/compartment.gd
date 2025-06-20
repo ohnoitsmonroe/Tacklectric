@@ -11,6 +11,8 @@ var mouseHover := false
 var mouseDrag := false
 var selected := false
 
+var childEntities := {}
+
 
 func _ready():
 	setMeshColor(Color.GRAY)
@@ -61,5 +63,16 @@ func setMeshColor(color:Color):
 		print("Compartment: Mesh is not assigned!")
 
 
-func addChildEntity(childRef:Entity, startingCoord:Vector2):
-	pass 
+func addChildEntity(childRef:Entity, startingCompartmentCoord:Vector2, gridPos:Vector2, grid:Grid):
+	var newChild = childRef.duplicate()
+	$ChildEntities.add_child(newChild)
+	newChild.StartingCoord = startingCompartmentCoord
+	
+	# Set a reference to the child based on the gridPos
+	# This will be changed whenever the compartment is moved so
+	# there is always an updated position
+	childEntities[gridPos] = newChild
+
+	var cell = grid.getCell(gridPos + startingCompartmentCoord).global_position
+	if is_instance_valid(cell):
+		newChild.global_position = cell.global_position
