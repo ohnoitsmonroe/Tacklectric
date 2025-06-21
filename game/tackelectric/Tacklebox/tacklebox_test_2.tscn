@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_lmcxg"]
 [ext_resource type="PackedScene" uid="uid://bvttia0s2ogkg" path="res://Entities/LineSpawnPoint/SpawnpointFishingLine.tscn" id="2_08owh"]
-[ext_resource type="PackedScene" path="res://Entities/fish.tscn" id="3_geifh"]
-[ext_resource type="PackedScene" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_pgoqs"]
+[ext_resource type="PackedScene" uid="uid://bsnpjv4irh2cv" path="res://Entities/fish.tscn" id="3_geifh"]
+[ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_pgoqs"]
 [ext_resource type="PackedScene" uid="uid://csvfy2ksxqjsi" path="res://Entities/Lure/lure.tscn" id="5_4m50p"]
 [ext_resource type="PackedScene" path="res://Entities/Compartment/compartment_2x1.tscn" id="6_fwfkj"]
 [ext_resource type="PackedScene" uid="uid://dburw7058bjqr" path="res://Entities/Wall/wall.tscn" id="7_ph2at"]

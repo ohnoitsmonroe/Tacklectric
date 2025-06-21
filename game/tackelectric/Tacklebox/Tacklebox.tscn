@@ -1,10 +1,94 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=9 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
-[ext_resource type="PackedScene" uid="uid://svux827j548s" path="res://Tacklebox/TackleBox_008.glb" id="5_2ktjw"]
-[ext_resource type="PackedScene" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
+[ext_resource type="PackedScene" uid="uid://c2bqwpepsgld" path="res://Tacklebox/TackleBox_TextureTest.glb" id="5_t4nvl"]
+[ext_resource type="PackedScene" uid="uid://dd7k27d3it1xd" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
+
+[sub_resource type="Animation" id="Animation_yt251"]
+resource_name = "test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TackleBox_TextureTest:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.466667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1.2, 1), Vector3(1, 0.9, 1), Vector3(1, 1.05, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TackleBox_TextureTest:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0872665, 0), Vector3(0, 0.0523599, 0), Vector3(0, 0, 0), Vector3(0, -0.0174533, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.0, 7.0, 6.0]
+}
+
+[sub_resource type="Animation" id="Animation_lox2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TackleBox_TextureTest:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TackleBox_TextureTest:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tooaj"]
+_data = {
+"RESET": SubResource("Animation_lox2e"),
+"test": SubResource("Animation_yt251")
+}
 
 [node name="Tacklebox" type="Node3D"]
 
@@ -13,7 +97,7 @@ setupEntities = NodePath("../SetupEntities")
 referenceGrid = NodePath("../reference_grid")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.292572, 0.956244, 0, -0.956244, 0.292572, 1.715, 3.24, 2.14242)
+transform = Transform3D(1, 0, 0, 0, 0.530097, 0.847937, 0, -0.847937, 0.530097, 1.715, 3.24, 2.89242)
 projection = 1
 current = true
 size = 6.0
@@ -24,5 +108,10 @@ script = ExtResource("2_vle1h")
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")
 
-[node name="TackleBox_008" parent="." instance=ExtResource("5_2ktjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81, -1.56, 1.04)
+[node name="TackleBox_TextureTest" parent="." instance=ExtResource("5_t4nvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83893, -1.79282, 1.04618)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tooaj")
+}
