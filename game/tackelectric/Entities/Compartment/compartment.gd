@@ -18,6 +18,7 @@ var childEntities := {}
 func _ready():
 	if not Engine.is_editor_hint():
 		setMeshColor(Color.GRAY)
+	
 
 
 func _input(event: InputEvent) -> void:
@@ -42,7 +43,13 @@ func _input(event: InputEvent) -> void:
 # when it is made
 func moveComp(x,y):
 	emit_signal("moveEntity", self, Vector2(x,y))
+	cullChildren()
 
+func cullChildren():
+	for child in get_children():
+		if child is Entity:
+			if not child.is_in_group("inCompartment"):
+				child.queue_free()
 
 func mouseHovered():
 	mouseHover = true
@@ -89,7 +96,8 @@ func addChildEntity(childRef:Entity, startingCompartmentCoord:Vector2, gridPos:V
 		
 		if is_instance_valid(cell):
 			newChild.global_position = cell.global_position
-
+	
+	cullChildren()
 
 # Reset all the references to the child entity position
 # after being moved to a new location
