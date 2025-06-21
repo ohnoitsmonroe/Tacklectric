@@ -114,7 +114,7 @@ func redirect(_entity):
 			currentSegment.stopScale()
 			currentSegment = null
 
-
+# When the line hits the fish
 func catchFish(_entity):
 	# Wait for the segment to extend across the cell
 	if is_instance_valid(currentSegment):
@@ -123,3 +123,15 @@ func catchFish(_entity):
 	lineActive = false
 	print("You won the game!")
 	get_tree().reload_current_scene()
+
+# When the line hits a wall
+func endLine(_entity):
+	if is_instance_valid(currentSegment):
+		await currentSegment.extendedToNewCell
+
+	# Stop when it hits the edge
+	if is_instance_valid(currentSegment):
+		currentSegment.stopScale()
+		
+	lineActive = false
+	queue_free()

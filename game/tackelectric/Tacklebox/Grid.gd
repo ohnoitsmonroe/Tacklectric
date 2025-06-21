@@ -22,6 +22,7 @@ class_name Grid
 
 var currentLine = null
 
+
 # The cells dictionary saves reference to each cell node
 # by a Vector2 of its coordinate
 var cells := {}
