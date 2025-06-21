@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyyc4gnjhca30"]
+[gd_scene load_steps=9 format=3 uid="uid://cyyc4gnjhca30"]
 
 [ext_resource type="Script" path="res://UI/menus/volume_slider.gd" id="1_0jgfw"]
 [ext_resource type="Script" path="res://UI/menus/options_list.gd" id="1_d37hh"]
 [ext_resource type="Script" path="res://UI/menus/toggle_fullscreen.gd" id="3_fej2b"]
+[ext_resource type="Script" path="res://UI/menus/music_slider.gd" id="3_sw373"]
+[ext_resource type="Script" path="res://UI/menus/mute_master.gd" id="3_uaau7"]
+[ext_resource type="Script" path="res://UI/menus/sfx_slider.gd" id="4_4gh4l"]
+[ext_resource type="Script" path="res://UI/menus/mute_music.gd" id="5_sxdpp"]
+[ext_resource type="Script" path="res://UI/menus/mute_sfx.gd" id="7_b8ebd"]
 
 [node name="OptionsList" type="VBoxContainer"]
 offset_left = 424.0
@@ -13,9 +18,39 @@ script = ExtResource("1_d37hh")
 
 [node name="VolumeSlider" type="HSlider" parent="."]
 layout_mode = 2
+tooltip_text = "Master"
 max_value = 1.0
 step = 0.05
 script = ExtResource("1_0jgfw")
+
+[node name="MuteMaster" type="Button" parent="."]
+layout_mode = 2
+text = "Mute Master"
+script = ExtResource("3_uaau7")
+
+[node name="MusicSlider" type="HSlider" parent="."]
+layout_mode = 2
+tooltip_text = "Music"
+max_value = 1.0
+step = 0.05
+script = ExtResource("3_sw373")
+
+[node name="Mute Music" type="Button" parent="."]
+layout_mode = 2
+text = "Mute Music"
+script = ExtResource("5_sxdpp")
+
+[node name="SFXSlider" type="HSlider" parent="."]
+layout_mode = 2
+tooltip_text = "SFX"
+max_value = 1.0
+step = 0.05
+script = ExtResource("4_4gh4l")
+
+[node name="Mute SFX" type="Button" parent="."]
+layout_mode = 2
+text = "Mute SFX"
+script = ExtResource("7_b8ebd")
 
 [node name="ToggleFullscreen" type="CheckButton" parent="."]
 layout_mode = 2
@@ -24,4 +59,11 @@ script = ExtResource("3_fej2b")
 
 [connection signal="mouse_exited" from="VolumeSlider" to="VolumeSlider" method="release_focus"]
 [connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="_on_value_changed"]
+[connection signal="pressed" from="MuteMaster" to="MuteMaster" method="_on_pressed"]
+[connection signal="mouse_exited" from="MusicSlider" to="MusicSlider" method="release_focus"]
+[connection signal="value_changed" from="MusicSlider" to="MusicSlider" method="_on_value_changed"]
+[connection signal="pressed" from="Mute Music" to="Mute Music" method="_on_pressed"]
+[connection signal="mouse_exited" from="SFXSlider" to="SFXSlider" method="release_focus"]
+[connection signal="value_changed" from="SFXSlider" to="SFXSlider" method="_on_value_changed"]
+[connection signal="pressed" from="Mute SFX" to="Mute SFX" method="_on_pressed"]
 [connection signal="toggled" from="ToggleFullscreen" to="ToggleFullscreen" method="_on_toggled"]
