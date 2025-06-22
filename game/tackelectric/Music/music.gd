@@ -1,9 +1,10 @@
-extends VBoxContainer
+extends AudioStreamPlayer2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$VolumeSlider.grab_focus()
+	g.music = self
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

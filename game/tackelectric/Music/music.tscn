@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu13uei7pay7d"]
+
+[ext_resource type="AudioStream" uid="uid://deyexsjeak06t" path="res://Music/TheDaysPassAsFastAsMyPetElectrons.mp3" id="1_2e4ro"]
+[ext_resource type="Script" path="res://Music/music.gd" id="2_hgbso"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_2e4ro")
+autoplay = true
+script = ExtResource("2_hgbso")

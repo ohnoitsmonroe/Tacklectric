@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1msks0f8mpgh"]
+[gd_scene load_steps=6 format=3 uid="uid://b1msks0f8mpgh"]
 
 [ext_resource type="Script" path="res://UI/menus/menu_list.gd" id="1_dikuh"]
 [ext_resource type="PackedScene" uid="uid://os7g5t3vxmd2" path="res://Tacklebox/milton levels/tacklebox_milton_002.tscn" id="2_dwxrx"]
 [ext_resource type="Script" path="res://UI/menus/button.gd" id="2_fbq1h"]
 [ext_resource type="PackedScene" uid="uid://cyyc4gnjhca30" path="res://UI/menus/options_list.tscn" id="3_ebpcf"]
+[ext_resource type="Script" path="res://UI/menus/options.gd" id="5_ewer6"]
 
 [node name="MenuList" type="VBoxContainer"]
 script = ExtResource("1_dikuh")
@@ -18,6 +19,7 @@ script = ExtResource("2_fbq1h")
 [node name="Options" type="Button" parent="."]
 layout_mode = 2
 text = "Options"
+script = ExtResource("5_ewer6")
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
