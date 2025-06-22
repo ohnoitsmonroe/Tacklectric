@@ -15,16 +15,16 @@ size = Vector3(1.1, 0.6, 1.1)
 script = ExtResource("1_0u0ji")
 mesh = NodePath("MeshInstance3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["inCompartment"]]
 mesh = SubResource("BoxMesh_uegou")
 surface_material_override/0 = SubResource("StandardMaterial3D_6mddw")
 
-[node name="MouseDetector" type="Area3D" parent="."]
+[node name="MouseDetector" type="Area3D" parent="." groups=["inCompartment"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MouseDetector"]
 shape = SubResource("BoxShape3D_pny3m")
 
-[node name="ChildEntities" type="Node3D" parent="."]
+[node name="ChildEntities" type="Node3D" parent="." groups=["inCompartment"]]
 
 [connection signal="mouse_entered" from="MouseDetector" to="." method="mouseHovered"]
 [connection signal="mouse_exited" from="MouseDetector" to="." method="mouseNotHovered"]

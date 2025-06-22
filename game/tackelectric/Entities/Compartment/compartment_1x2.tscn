@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://pv2gusgkgcnd"]
+
+[ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_as5vr"]
+[ext_resource type="ArrayMesh" uid="uid://bivnav5jqi4ea" path="res://Entities/Compartment/singleCompartment_1x2_Cube_006.res" id="2_0t3qj"]
+
+[node name="Compartment_1x2" instance=ExtResource("1_as5vr")]
+Size = Vector2(1, 2)
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("2_0t3qj")
