@@ -134,3 +134,11 @@ StartingCoord = Vector2(3, 2)
 [node name="filledSlot17" parent="SetupEntities" index="23" instance=ExtResource("8_8e43j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 0.52)
 StartingCoord = Vector2(1, 1)
+
+[node name="filledSlot18" parent="SetupEntities" index="24" instance=ExtResource("8_8e43j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0, 1.04)
+StartingCoord = Vector2(4, 2)
+
+[node name="filledSlot19" parent="SetupEntities" index="25" instance=ExtResource("8_8e43j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 1.04)
+StartingCoord = Vector2(5, 2)
