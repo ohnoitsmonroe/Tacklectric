@@ -9,41 +9,100 @@ class_name Compartment
 @onready var compPos = self.global_position
 
 var mouseHover := false
-var mouseDrag := false
 var selected := false
 
+var mousePos := Vector2(0,0)
+
+var dragDistance := 20 
+
 var childEntities := {}
+
+var offsetPos := Vector3(0,0,0)
+var moveVector := Vector2(0,0)
+
+var previewDistance := .1
 
 
 func _ready():
 	if not Engine.is_editor_hint():
 		setMeshColor(Color.GRAY)
-	
 
 
 func _input(event: InputEvent) -> void:
 	if not Engine.is_editor_hint():
 		if event.is_action_pressed("left_click"):
 			if mouseHover:
-				selected = !selected
-				#print("Compartment Location: ", compPos)
+				selected = true
+				mousePos = get_viewport().get_mouse_position()
+		
+		elif event.is_action_released("left_click"):
+			if selected:
+				var newMousePos = get_viewport().get_mouse_position()
+				setMoveDirection(newMousePos)
+				moveComp(moveVector.x, moveVector.y)
+
+
+func _process(delta: float) -> void:
+	$MeshInstance3D.position = lerp($MeshInstance3D.position, offsetPos, .5)
+	$ChildEntities.position = lerp($MeshInstance3D.position, offsetPos, .2)
+	if selected:
+		var newMousePos = get_viewport().get_mouse_position()
+		setMoveDirection(newMousePos)
+
+
+func setMoveDirection(newMousePos):
+	# Move Right
+	var netPos = mousePos - newMousePos
+	if abs(netPos.x) > abs(netPos.y):
+		if newMousePos.x > mousePos.x + dragDistance:
+			offsetPos = Vector3(previewDistance, 0, 0)
+			moveVector = Vector2(1, 0)
+			
+		# Move Left
+		elif newMousePos.x < mousePos.x - dragDistance:
+			offsetPos = Vector3(-previewDistance, 0, 0)
+			moveVector = Vector2(-1, 0)
+			
+		# Move Up
+		elif newMousePos.y > mousePos.y + dragDistance:
+			offsetPos = Vector3(0, 0, previewDistance)
+			moveVector = Vector2(0, 1)
+			
+		# Move Down
+		elif newMousePos.y < mousePos.y - dragDistance:
+			offsetPos = Vector3(0, 0, -previewDistance)
+			moveVector = Vector2(0, -1)
+	else:
+			# Move Up
+			if newMousePos.y > mousePos.y + dragDistance:
+				offsetPos = Vector3(0, 0, 0.15)
+				moveVector = Vector2(0, 1)
 				
-		if selected:
-			if event.is_action_pressed("move_left"):
-				moveComp(-1, 0)
-			elif event.is_action_pressed("move_right"):
-				moveComp(1, 0)
-			elif event.is_action_pressed("move_up"):
-				moveComp(0, -1)
-			elif event.is_action_pressed("move_down"):
-				moveComp(0, 1)
+			# Move Down
+			elif newMousePos.y < mousePos.y - dragDistance:
+				offsetPos = Vector3(0, 0, -.15)
+				moveVector = Vector2(0, -1)
+				
+			# Move Right
+			elif newMousePos.x > mousePos.x + dragDistance:
+				offsetPos = Vector3(.15, 0, 0)
+				moveVector = Vector2(1, 0)
+				
+			# Move Left
+			elif newMousePos.x < mousePos.x - dragDistance:
+				offsetPos = Vector3(-.15, 0, 0)
+				moveVector = Vector2(-1, 0)
 
 
 # This signal will be connected to the grid 
 # when it is made
 func moveComp(x,y):
+	selected = false
+	offsetPos = Vector3(0,0,0)
+
 	emit_signal("moveEntity", self, Vector2(x,y))
 	cullChildren()
+
 
 func cullChildren():
 	for child in get_children():
