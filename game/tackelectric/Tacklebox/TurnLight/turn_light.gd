@@ -1,6 +1,7 @@
 extends Node3D
 
-@export var mesh : MeshInstance3D = null
+@export var mesh : Node3D = null
+@export var offColor : Color
 
 var active := false
 
@@ -10,13 +11,20 @@ func _ready():
 
 
 func setActive():
-	active = true
+	if active == false:
+		active = true
+		$anim.play("light")
+
+
+func setRed():
 	setMeshColor(Color.RED)
 
 
 func setInActive():
 	active = false
-	setMeshColor(Color.GRAY)
+	setMeshColor(offColor)
+	$OmniLight3D.visible = false
+
 
 
 func setMeshColor(color:Color):
