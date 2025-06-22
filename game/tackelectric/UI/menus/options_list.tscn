@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyyc4gnjhca30"]
+[gd_scene load_steps=10 format=3 uid="uid://cyyc4gnjhca30"]
 
 [ext_resource type="Script" path="res://UI/menus/volume_slider.gd" id="1_0jgfw"]
 [ext_resource type="Script" path="res://UI/menus/options_list.gd" id="1_d37hh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://UI/menus/sfx_slider.gd" id="4_4gh4l"]
 [ext_resource type="Script" path="res://UI/menus/mute_music.gd" id="5_sxdpp"]
 [ext_resource type="Script" path="res://UI/menus/mute_sfx.gd" id="7_b8ebd"]
+[ext_resource type="Script" path="res://UI/menus/back_button.gd" id="9_ikssp"]
 
 [node name="OptionsList" type="VBoxContainer"]
 offset_right = 227.0
@@ -55,6 +56,11 @@ layout_mode = 2
 text = "Fullscreen"
 script = ExtResource("3_fej2b")
 
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 2
+text = "Back"
+script = ExtResource("9_ikssp")
+
 [connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="_on_value_changed"]
 [connection signal="pressed" from="MuteMaster" to="MuteMaster" method="_on_pressed"]
 [connection signal="mouse_exited" from="MusicSlider" to="MusicSlider" method="release_focus"]
@@ -64,3 +70,4 @@ script = ExtResource("3_fej2b")
 [connection signal="value_changed" from="SFXSlider" to="SFXSlider" method="_on_value_changed"]
 [connection signal="pressed" from="Mute SFX" to="Mute SFX" method="_on_pressed"]
 [connection signal="toggled" from="ToggleFullscreen" to="ToggleFullscreen" method="_on_toggled"]
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]

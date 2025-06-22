@@ -1,6 +1,5 @@
 extends Button
 
-var MiltonOne : PackedScene = preload("res://Tacklebox/milton levels/tacklebox_milton_002.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	g.game.loadLevel(MiltonOne)
+	g.game.loadMainMenu()
