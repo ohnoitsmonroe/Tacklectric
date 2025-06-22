@@ -18,7 +18,7 @@ setupEntities = NodePath("../SetupEntities")
 referenceGrid = NodePath("../reference_grid")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.99863, -0.0443834, 0.0277338, 0, 0.529919, 0.848048, -0.052336, -0.846886, 0.529193, 1.715, 3.24, 2.89242)
+transform = Transform3D(1, 0, 0, 0, 0.530097, 0.847937, 0, -0.847937, 0.530097, 1.715, 3.24, 2.89242)
 projection = 1
 current = true
 size = 6.0
@@ -34,5 +34,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.74713)
 
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")
-
-[connection signal="turnTaken" from="Grid" to="." method="increaseTurnCount"]

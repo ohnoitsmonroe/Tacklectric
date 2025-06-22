@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cara7ew5hwrqh"]
+[gd_scene load_steps=5 format=3 uid="uid://cara7ew5hwrqh"]
 
 [ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_wkgr7"]
 [ext_resource type="ArrayMesh" uid="uid://bivnav5jqi4ea" path="res://Entities/Compartment/singleCompartment_1x2_Cube_006.res" id="2_nccax"]
+[ext_resource type="Texture2D" uid="uid://cicacu8ahubcu" path="res://Entities/Compartment/CompartmentShadows/CompartmentShadow_2x2.png" id="3_foh81"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mddw"]
 albedo_color = Color(0.791814, 8.70204e-05, 0.642334, 1)
@@ -16,3 +17,7 @@ mesh = ExtResource("2_nccax")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.505127)
 mesh = ExtResource("2_nccax")
 surface_material_override/0 = SubResource("StandardMaterial3D_6mddw")
+
+[node name="Sprite3D" parent="." index="4"]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0.252, -0.01, 0.252)
+texture = ExtResource("3_foh81")

@@ -13,95 +13,148 @@ var selected := false
 
 var mousePos := Vector2(0,0)
 
-var dragDistance := 20 
+var dragDistance := 80
 
 var childEntities := {}
 
 var offsetPos := Vector3(0,0,0)
 var moveVector := Vector2(0,0)
+var moveTargetPos := Vector2(0,0)
 
 var previewDistance := .1
+
+var moving := false
 
 
 func _ready():
 	if not Engine.is_editor_hint():
+		offsetPos = global_position
 		setMeshColor(Color.GRAY)
 
 
 func _input(event: InputEvent) -> void:
 	if not Engine.is_editor_hint():
 		if event.is_action_pressed("left_click"):
-			if mouseHover:
-				selected = true
-				mousePos = get_viewport().get_mouse_position()
-		
+			if moving == false:
+				if mouseHover:
+					selected = true
+					mousePos = get_viewport().get_mouse_position()
+					
+					# Set the move target pos to be the current
+					# position before its moved
+					if is_instance_valid(anchorCell):
+						moveTargetPos = anchorCell.gridPos
+					
 		elif event.is_action_released("left_click"):
 			if selected:
 				var newMousePos = get_viewport().get_mouse_position()
 				setMoveDirection(newMousePos)
-				moveComp(moveVector.x, moveVector.y)
+				moveComp()
 
 
 func _process(delta: float) -> void:
-	$MeshInstance3D.position = lerp($MeshInstance3D.position, offsetPos, .5)
-	$ChildEntities.position = lerp($MeshInstance3D.position, offsetPos, .2)
-	if selected:
-		var newMousePos = get_viewport().get_mouse_position()
-		setMoveDirection(newMousePos)
+	if not Engine.is_editor_hint():
+		if is_instance_valid(anchorCell):
+			if global_position != anchorCell.global_position:
+				global_position = lerp(global_position, anchorCell.global_position, .2)
+		
+		if not moving:	
+			$MeshInstance3D.global_position = lerp($MeshInstance3D.global_position, offsetPos, .5)
+			$ChildEntities.global_position = lerp($MeshInstance3D.global_position, offsetPos, .5)
+		
+		if selected:
+			var newMousePos = get_viewport().get_mouse_position()
+			setMoveDirection(newMousePos)
 
 
 func setMoveDirection(newMousePos):
-	# Move Right
-	var netPos = mousePos - newMousePos
-	if abs(netPos.x) > abs(netPos.y):
-		if newMousePos.x > mousePos.x + dragDistance:
-			offsetPos = Vector3(previewDistance, 0, 0)
-			moveVector = Vector2(1, 0)
+	if is_instance_valid(anchorCell):
+		# The current gridPos of the cell
+		var startingCellPos = anchorCell.gridPos
+		
+		var netPos = mousePos - newMousePos
+		
+		var xAxisMovement := true
+		
+		# This is what will be added to the startingCellPos
+		# for the targetPos
+		var offsetCellPos = Vector2(0,0)
+		
+		# Horizontal movement if there is a bigger abs(x)
+		if abs(netPos.x) > abs(netPos.y):
+			netPos = Vector2(netPos.x, 0)
+		# Otherwise horizontal movement
+		else:
+			netPos = Vector2(0, netPos.y)
+			xAxisMovement = false
+		
+		offsetCellPos = round(netPos / Vector2(dragDistance, dragDistance))
+		
+		# This is the position of the cell you want to move to
+		var targetCellPos = startingCellPos - offsetCellPos
+		
+		var validMove := true
+		
+		if get_parent() is Grid:
+			var cellsToCheckCount := 0
 			
-		# Move Left
-		elif newMousePos.x < mousePos.x - dragDistance:
-			offsetPos = Vector3(-previewDistance, 0, 0)
-			moveVector = Vector2(-1, 0)
+			if xAxisMovement:
+				cellsToCheckCount = targetCellPos.x - startingCellPos.x
+				
+				for cell in abs(cellsToCheckCount):
+					var cellToCheck = Vector2(startingCellPos.x + cell, startingCellPos.y)
+					var targetMove = get_parent().checkEntityMovePos(self, cellToCheck)
+					
+					if targetMove == false:
+						validMove = false
+			else:
+				cellsToCheckCount = targetCellPos.y - startingCellPos.y
+				
+				for cell in abs(cellsToCheckCount):
+					var cellToCheck = Vector2(startingCellPos.x, startingCellPos.y + cell)
+					var targetMove = get_parent().checkEntityMovePos(self, cellToCheck)
+					
+					if targetMove == false:
+						validMove = false
 			
-		# Move Up
-		elif newMousePos.y > mousePos.y + dragDistance:
-			offsetPos = Vector3(0, 0, previewDistance)
-			moveVector = Vector2(0, 1)
-			
-		# Move Down
-		elif newMousePos.y < mousePos.y - dragDistance:
-			offsetPos = Vector3(0, 0, -previewDistance)
-			moveVector = Vector2(0, -1)
-	else:
-			# Move Up
-			if newMousePos.y > mousePos.y + dragDistance:
-				offsetPos = Vector3(0, 0, 0.15)
-				moveVector = Vector2(0, 1)
-				
-			# Move Down
-			elif newMousePos.y < mousePos.y - dragDistance:
-				offsetPos = Vector3(0, 0, -.15)
-				moveVector = Vector2(0, -1)
-				
-			# Move Right
-			elif newMousePos.x > mousePos.x + dragDistance:
-				offsetPos = Vector3(.15, 0, 0)
-				moveVector = Vector2(1, 0)
-				
-			# Move Left
-			elif newMousePos.x < mousePos.x - dragDistance:
-				offsetPos = Vector3(-.15, 0, 0)
-				moveVector = Vector2(-1, 0)
+			if validMove:
+				if get_parent().checkEntityMovePos(self, targetCellPos):
+					var targetCell = get_parent().getCell(targetCellPos)
+					if is_instance_valid(targetCell):
+						offsetPos = targetCell.global_position
+						
+						# This is the position that the compartment will be moved in
+						moveTargetPos = targetCellPos
 
 
 # This signal will be connected to the grid 
 # when it is made
-func moveComp(x,y):
-	selected = false
-	offsetPos = Vector3(0,0,0)
+func moveComp():
+	moving = true
+	
+	$MeshInstance3D.position = Vector3.ZERO
+	$ChildEntities.position = Vector3.ZERO
+	
+	# Only move the compartment if the target cell isn't
+	# the same pos as the current pos
+	if is_instance_valid(anchorCell):
+		if moveTargetPos != anchorCell.gridPos:
+			emit_signal("moveEntity", self, moveTargetPos)
+			
+			if is_instance_valid(get_tree()):
+				await get_tree().create_timer(.2).timeout
 
-	emit_signal("moveEntity", self, Vector2(x,y))
+	moving = false
+
+	# cull the children
 	cullChildren()
+	
+	selected = false
+	offsetPos = global_position
+	
+	if is_instance_valid(get_viewport()):
+		mousePos = get_viewport().get_mouse_position()
+	mouseNotHovered()
 
 
 func cullChildren():
@@ -109,6 +162,7 @@ func cullChildren():
 		if child is Entity:
 			if not child.is_in_group("inCompartment"):
 				child.queue_free()
+
 
 func mouseHovered():
 	mouseHover = true

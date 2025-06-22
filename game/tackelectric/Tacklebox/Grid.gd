@@ -22,6 +22,9 @@ class_name Grid
 
 var currentLine = null
 
+# The signal used after the moveEntity is ran, it is connected
+# to the tacklebox for the turn timer
+signal turnTaken
 
 # The cells dictionary saves reference to each cell node
 # by a Vector2 of its coordinate
@@ -107,12 +110,11 @@ func addEntitiesFromSetup():
 
 
 # Connected to an entities moveEntity signal when it is added from Setup
-func moveEntity(entity:Entity, direction:Vector2):
+func moveEntity(entity:Entity, targetPos:Vector2):
 	var entitySize := entity.Size
 	
 	if is_instance_valid(entity.anchorCell):
 		var currentPos = entity.anchorCell.gridPos
-		var targetPos = currentPos + direction
 		
 		var cellsOpen := true
 		
@@ -155,6 +157,50 @@ func moveEntity(entity:Entity, direction:Vector2):
 			# Move the entity
 			var targetCell = getCell(targetPos)
 			setEntityAtCell(entity, targetCell)
+			
+			emit_signal("turnTaken")
+
+
+func checkEntityMovePos(entity:Entity, targetPos:Vector2):
+	var entitySize := entity.Size
+	
+	if is_instance_valid(entity.anchorCell):
+		var currentPos = entity.anchorCell.gridPos
+		
+		var cellsOpen := true
+		
+		var targetCells = []
+		var currentCells = []
+		
+		# Get all the cells that are currently occupied by the entity
+		# Then get all the cells that would be occupied by the entity in
+		# its target pos
+		for y in entitySize.y:
+			for x in entitySize.x:
+				targetCells.append(getCell(targetPos + Vector2(x,y)))
+				currentCells.append(getCell(currentPos + Vector2(x,y)))
+		
+		# Check all the target cells, and see if they are:
+		# 1. In the grid as a valid cell
+		# 2. Are open and empty
+		# 3. If they are occupied, make sure that the entity occupying
+		# isn't the current one
+		for cell in targetCells:
+			if cell != null:
+				if !checkOpenCell(cell.gridPos):
+					if getCellHeldEntity(cell.gridPos) != entity:
+						cellsOpen = false
+			
+						return false
+			else:
+				cellsOpen = false
+				return false
+		
+		# Move the entity and update the current and target cells
+		if cellsOpen:
+			return true
+		
+	return false
 
 
 # This just functions for 1x1 entities right now, where anything
@@ -173,6 +219,9 @@ func setEntityAtCell(entity:Entity, cell:Cell):
 	# Update the child entities if the entity is a compartment
 	if entity is Compartment:
 		entity.setChildEntityPositions(cell.gridPos)
+
+
+
 
 
 func spawnLine(cellPos:Vector2):
