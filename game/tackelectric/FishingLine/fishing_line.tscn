@@ -18,11 +18,13 @@ script = ExtResource("1_e2yme")
 lineSegmentRef = ExtResource("2_2g0jl")
 
 [node name="SFXPlayer_cast" parent="." instance=ExtResource("3_pp3ch")]
+volume_db = -12.0
 streams = Array[AudioStream]([ExtResource("4_7kso3"), ExtResource("5_qy4r0"), ExtResource("6_j4web")])
 pitch_min = 0.9
 pitch_max = 1.1
 
 [node name="SFXPlayer_redirect" parent="." instance=ExtResource("3_pp3ch")]
+volume_db = -20.0
 streams = Array[AudioStream]([ExtResource("7_2ccy8"), ExtResource("8_b64hc"), ExtResource("9_5e2kd")])
 pitch_min = 0.9
 pitch_max = 1.1
@@ -31,3 +33,7 @@ pitch_max = 1.1
 streams = Array[AudioStream]([ExtResource("10_kp5wf"), ExtResource("11_4crxm"), ExtResource("12_xnmlh")])
 pitch_min = 0.9
 pitch_max = 1.1
+
+[connection signal="sfx_cast" from="." to="SFXPlayer_cast" method="play_sfx"]
+[connection signal="sfx_redirect" from="." to="SFXPlayer_redirect" method="play_sfx"]
+[connection signal="sfx_reel" from="." to="SFXPlayer_reel" method="play_sfx"]

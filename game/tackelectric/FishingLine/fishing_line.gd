@@ -15,8 +15,9 @@ var lineActive := false
 
 var currentSegment : LineSegment = null
 
-signal cast
-
+signal sfx_cast
+signal sfx_redirect
+signal sfx_reel
 
 # Called from tacklebox or something when its added
 func init(newGrid:Grid, newStartingCoord:Vector2):
@@ -29,8 +30,9 @@ func _ready():
 	await get_tree().create_timer(.01).timeout
 	iterateLine()
 
-
 func iterateLine():
+	emit_signal("sfx_cast")
+	
 	lineActive = true
 
 	while lineActive:
@@ -104,7 +106,9 @@ func addLineSegment(direction:Vector2):
 func redirect(_entity):
 	if is_instance_valid(_entity):
 		if "startingDirection" in _entity:
-						
+			
+			emit_signal("sfx_redirect")
+			
 			var entityDirection = _entity.get_forward_vector()
 			currentDirection = entityDirection * Vector2(1,-1)
 						
@@ -119,6 +123,7 @@ func redirect(_entity):
 
 # When the line hits the fish
 func catchFish(_entity):
+	emit_signal("sfx_reel")
 	# Wait for the segment to extend across the cell
 	if is_instance_valid(currentSegment):
 		await currentSegment.extendedToNewCell
@@ -132,10 +137,16 @@ func catchFish(_entity):
 func endLine(_entity):
 	if is_instance_valid(currentSegment):
 		await currentSegment.extendedToNewCell
+	
 
+	
 	# Stop when it hits the edge
 	if is_instance_valid(currentSegment):
 		currentSegment.stopScale()
 		
 	lineActive = false
+	
+	await get_tree().create_timer(.2).timeout
+	emit_signal("sfx_reel")
+	
 	queue_free()
