@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvttia0s2ogkg"]
+
+[ext_resource type="Script" path="res://Entities/LineSpawnPoint/line_spawn_point.gd" id="1_raxeg"]
+[ext_resource type="ArrayMesh" uid="uid://xrrpvlixkyi8" path="res://Entities/LineSpawnPoint/Fishing_Line_EntryPoint_Cylinder_003.res" id="2_mjg88"]
+
+[node name="lineSpawnPoint" type="Node3D"]
+script = ExtResource("1_raxeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mjg88")

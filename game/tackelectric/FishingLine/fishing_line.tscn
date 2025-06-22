@@ -1,0 +1,39 @@
+[gd_scene load_steps=13 format=3 uid="uid://5dui6rgpok7u"]
+
+[ext_resource type="Script" path="res://FishingLine/fishing_line.gd" id="1_e2yme"]
+[ext_resource type="PackedScene" uid="uid://btqnm4otujasf" path="res://FishingLine/LineSegment.tscn" id="2_2g0jl"]
+[ext_resource type="PackedScene" uid="uid://brgfr6xuehaqe" path="res://SFX/sfx_player.tscn" id="3_pp3ch"]
+[ext_resource type="AudioStream" uid="uid://di5pqff47wjay" path="res://SFX/line_cast_2.wav" id="4_7kso3"]
+[ext_resource type="AudioStream" uid="uid://01okdqgicbfh" path="res://SFX/line_cast_3.wav" id="5_qy4r0"]
+[ext_resource type="AudioStream" uid="uid://bey5qcat7n4wn" path="res://SFX/line_cast_1.wav" id="6_j4web"]
+[ext_resource type="AudioStream" uid="uid://d07ke4cib2ij6" path="res://SFX/line_redirect_1.wav" id="7_2ccy8"]
+[ext_resource type="AudioStream" uid="uid://cp4l0mpop0k7a" path="res://SFX/line_redirect_2.wav" id="8_b64hc"]
+[ext_resource type="AudioStream" uid="uid://brt53avno5dmg" path="res://SFX/line_redirect_3.wav" id="9_5e2kd"]
+[ext_resource type="AudioStream" uid="uid://bj83tjw666eha" path="res://SFX/line_catch_1.wav" id="10_kp5wf"]
+[ext_resource type="AudioStream" uid="uid://dacmsvrxcr87y" path="res://SFX/line_catch_2.wav" id="11_4crxm"]
+[ext_resource type="AudioStream" uid="uid://dlajprse5l00m" path="res://SFX/line_catch_3.wav" id="12_xnmlh"]
+
+[node name="fishingLine" type="Node3D"]
+script = ExtResource("1_e2yme")
+lineSegmentRef = ExtResource("2_2g0jl")
+
+[node name="SFXPlayer_cast" parent="." instance=ExtResource("3_pp3ch")]
+volume_db = -12.0
+streams = Array[AudioStream]([ExtResource("4_7kso3"), ExtResource("5_qy4r0"), ExtResource("6_j4web")])
+pitch_min = 0.9
+pitch_max = 1.1
+
+[node name="SFXPlayer_redirect" parent="." instance=ExtResource("3_pp3ch")]
+volume_db = -20.0
+streams = Array[AudioStream]([ExtResource("7_2ccy8"), ExtResource("8_b64hc"), ExtResource("9_5e2kd")])
+pitch_min = 0.9
+pitch_max = 1.1
+
+[node name="SFXPlayer_reel" parent="." instance=ExtResource("3_pp3ch")]
+streams = Array[AudioStream]([ExtResource("10_kp5wf"), ExtResource("11_4crxm"), ExtResource("12_xnmlh")])
+pitch_min = 0.9
+pitch_max = 1.1
+
+[connection signal="sfx_cast" from="." to="SFXPlayer_cast" method="play_sfx"]
+[connection signal="sfx_redirect" from="." to="SFXPlayer_redirect" method="play_sfx"]
+[connection signal="sfx_reel" from="." to="SFXPlayer_reel" method="play_sfx"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnpjv4irh2cv"]
+
+[ext_resource type="Script" path="res://Entities/fish.gd" id="1_n6fvp"]
+[ext_resource type="ArrayMesh" uid="uid://clfdk5v8h1bnt" path="res://Entities/Fish/FishModel_Cube_007.res" id="1_wrjc8"]
+
+[node name="fish" type="Node3D"]
+script = ExtResource("1_n6fvp")
+lineContactMethod = "catchFish"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wrjc8")

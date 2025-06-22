@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://crl1xgwujjc3c"]
+
+[ext_resource type="Script" path="res://Entities/Compartment/CompartmentShadows/compartment.gd" id="1_0u0ji"]
+[ext_resource type="ArrayMesh" uid="uid://rorf8qymp3aw" path="res://Tacklebox/singleSpace_Cube_004.res" id="2_rwn5c"]
+[ext_resource type="Texture2D" uid="uid://gh81uoo02600" path="res://Entities/Compartment/CompartmentShadows/CompartmentShadow_1x1.png" id="3_sfdcp"]
+[ext_resource type="PackedScene" uid="uid://brgfr6xuehaqe" path="res://SFX/sfx_player.tscn" id="4_6wslr"]
+[ext_resource type="AudioStream" uid="uid://cnee72ufoeryl" path="res://Entities/Compartment/compartment_float.wav" id="5_3o2ql"]
+[ext_resource type="AudioStream" uid="uid://c0q4f1bhogtoo" path="res://Entities/Compartment/compartment_place.wav" id="7_r8brb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mddw"]
+albedo_color = Color(0.791814, 8.70204e-05, 0.642334, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pny3m"]
+size = Vector3(1.1, 0.6, 1.1)
+
+[node name="Compartment" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_0u0ji")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["inCompartment"]]
+mesh = ExtResource("2_rwn5c")
+surface_material_override/0 = SubResource("StandardMaterial3D_6mddw")
+
+[node name="MouseDetector" type="Area3D" parent="." groups=["inCompartment"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MouseDetector"]
+shape = SubResource("BoxShape3D_pny3m")
+
+[node name="ChildEntities" type="Node3D" parent="." groups=["inCompartment"]]
+
+[node name="Shadow" type="Sprite3D" parent="." groups=["inCompartment"]]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0.002, -0.01, 0.002)
+texture_filter = 0
+texture = ExtResource("3_sfdcp")
+
+[node name="SFXPlayer_float" parent="." instance=ExtResource("4_6wslr")]
+stream = ExtResource("5_3o2ql")
+volume_db = -16.0
+streams = Array[AudioStream]([ExtResource("5_3o2ql")])
+pitch_min = 0.9
+pitch_max = 1.05
+
+[node name="SFXPlayer_place" parent="." instance=ExtResource("4_6wslr")]
+stream = ExtResource("7_r8brb")
+volume_db = -16.0
+streams = Array[AudioStream]([ExtResource("7_r8brb")])
+pitch_min = 0.9
+pitch_max = 1.1
+
+[connection signal="sfx_float" from="." to="SFXPlayer_float" method="play_sfx"]
+[connection signal="sfx_place" from="." to="SFXPlayer_place" method="play_sfx"]
+[connection signal="mouse_entered" from="MouseDetector" to="." method="mouseHovered"]
+[connection signal="mouse_exited" from="MouseDetector" to="." method="mouseNotHovered"]

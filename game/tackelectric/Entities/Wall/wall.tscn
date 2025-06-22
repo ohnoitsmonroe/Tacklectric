@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dburw7058bjqr"]
+
+[ext_resource type="Script" path="res://Entities/Wall/wall.gd" id="1_2i3vs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_86paw"]
+size = Vector3(0.5, 1, 0.5)
+
+[node name="wall" type="Node3D"]
+script = ExtResource("1_2i3vs")
+lineContactMethod = "endLine"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_86paw")

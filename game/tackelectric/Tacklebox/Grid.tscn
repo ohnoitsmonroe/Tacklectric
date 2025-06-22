@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cap2r0kkoynwh"]
+[gd_scene load_steps=4 format=3 uid="uid://cap2r0kkoynwh"]
 
 [ext_resource type="Script" path="res://Tacklebox/Grid.gd" id="1_pcs4f"]
 [ext_resource type="PackedScene" uid="uid://clsflogdwujbv" path="res://Tacklebox/Cell.tscn" id="2_j6x0f"]
+[ext_resource type="PackedScene" uid="uid://5dui6rgpok7u" path="res://FishingLine/fishing_line.tscn" id="3_dxn8s"]
 
 [node name="Grid" type="Node3D"]
 script = ExtResource("1_pcs4f")
 cellRef = ExtResource("2_j6x0f")
+lineRef = ExtResource("3_dxn8s")

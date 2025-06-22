@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
+[ext_resource type="PackedScene" uid="uid://4y8sq4lgsdkn" path="res://SFX/music_stabs.tscn" id="3_rbi8d"]
+[ext_resource type="PackedScene" uid="uid://os7g5t3vxmd2" path="res://Tacklebox/milton levels/tacklebox_milton_002.tscn" id="4_1hadn"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_s32mu")
 menu = ExtResource("2_tttft")
+tacklebox = ExtResource("4_1hadn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, 2.18557e-08, -0.5, 0.433013, -0.5, 0.75, -0.25, -0.866025, -0.433013, 0, 4, 0)
+transform = Transform3D(-0.568314, -0.797275, -0.2034, 0.433013, -0.5, 0.75, -0.699657, 0.33816, 0.629388, 0, 4, 0)
 
 [node name="Menu" type="CanvasLayer" parent="."]
 
@@ -21,3 +24,5 @@ grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
+
+[node name="musicStabs" parent="." instance=ExtResource("3_rbi8d")]

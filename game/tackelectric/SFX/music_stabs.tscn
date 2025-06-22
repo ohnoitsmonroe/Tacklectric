@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://4y8sq4lgsdkn"]
+
+[ext_resource type="Script" path="res://SFX/music_stabs.gd" id="1_ncobh"]
+[ext_resource type="PackedScene" uid="uid://brgfr6xuehaqe" path="res://SFX/sfx_player.tscn" id="2_uhapl"]
+[ext_resource type="AudioStream" uid="uid://bl2a7p1hif5u3" path="res://SFX/MusicStabs/melody_win_1.wav" id="3_bd8mu"]
+[ext_resource type="AudioStream" uid="uid://cccfohskbsg34" path="res://SFX/MusicStabs/melody_lose_1.wav" id="4_ailou"]
+
+[node name="musicStabs" type="Node3D"]
+script = ExtResource("1_ncobh")
+
+[node name="SFXPlayer_won" parent="." instance=ExtResource("2_uhapl")]
+volume_db = -8.0
+streams = Array[AudioStream]([ExtResource("3_bd8mu")])
+
+[node name="SFXPlayer_lost" parent="." instance=ExtResource("2_uhapl")]
+volume_db = -8.0
+streams = Array[AudioStream]([ExtResource("4_ailou")])
+
+[connection signal="game_over" from="." to="SFXPlayer_lost" method="play_sfx"]
+[connection signal="game_won" from="." to="SFXPlayer_won" method="play_sfx"]
