@@ -13,7 +13,7 @@ var selected := false
 
 var mousePos := Vector2(0,0)
 
-var dragDistance := 80
+var dragDistance := 400
 
 var childEntities := {}
 
@@ -24,6 +24,8 @@ var moveTargetPos := Vector2(0,0)
 var previewDistance := .1
 
 var moving := false
+
+var mouseInCollider := false
 
 
 func _ready():
@@ -37,18 +39,26 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("left_click"):
 			if moving == false:
 				if mouseHover:
-					selected = true
-					mousePos = get_viewport().get_mouse_position()
-					
-					# Set the move target pos to be the current
-					# position before its moved
-					if is_instance_valid(anchorCell):
-						moveTargetPos = anchorCell.gridPos
-					
+					if g.selectingCompartment == false:
+						g.selectingCompartment = true
+				
+						selected = true
+						mousePos = get_viewport().get_mouse_position()
+						print("Compartment setting mouse pos: " + str(mousePos))
+						
+						# Set the move target pos to be the current
+						# position before its moved
+						if is_instance_valid(anchorCell):
+							moveTargetPos = anchorCell.gridPos
+							
 		elif event.is_action_released("left_click"):
 			if selected:
+				selected = false
+				mouseNotHovered()
+				
 				var newMousePos = get_viewport().get_mouse_position()
 				setMoveDirection(newMousePos)
+				
 				moveComp()
 
 
@@ -56,7 +66,7 @@ func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		if is_instance_valid(anchorCell):
 			if global_position != anchorCell.global_position:
-				global_position = lerp(global_position, anchorCell.global_position, .2)
+				global_position = lerp(global_position, anchorCell.global_position, .5)
 		
 		if not moving:	
 			$MeshInstance3D.global_position = lerp($MeshInstance3D.global_position, offsetPos, .5)
@@ -83,20 +93,25 @@ func setMoveDirection(newMousePos):
 		# Horizontal movement if there is a bigger abs(x)
 		if abs(netPos.x) > abs(netPos.y):
 			netPos = Vector2(netPos.x, 0)
+			xAxisMovement = true
 		# Otherwise horizontal movement
 		else:
 			netPos = Vector2(0, netPos.y)
 			xAxisMovement = false
 		
-		offsetCellPos = round(netPos / Vector2(dragDistance, dragDistance))
+		offsetCellPos = round(netPos / Vector2(dragDistance, dragDistance/2))
 		
 		# This is the position of the cell you want to move to
 		var targetCellPos = startingCellPos - offsetCellPos
+		
+		#print("Compartment: TargetCellPos: " + str(targetCellPos))
 		
 		var validMove := true
 		
 		if get_parent() is Grid:
 			var cellsToCheckCount := 0
+			
+			var lastValidMovePos = startingCellPos
 			
 			if xAxisMovement:
 				cellsToCheckCount = targetCellPos.x - startingCellPos.x
@@ -107,17 +122,25 @@ func setMoveDirection(newMousePos):
 					
 					if targetMove == false:
 						validMove = false
+						print("Compartment: Invalid move at : " + str(cellToCheck))
+					# Set this as the last valid cell to check
+					else:
+						lastValidMovePos = cellToCheck
 			else:
 				cellsToCheckCount = targetCellPos.y - startingCellPos.y
 				
 				for cell in abs(cellsToCheckCount):
-					var cellToCheck = Vector2(startingCellPos.x, startingCellPos.y + cell)
+					var cellToCheck = Vector2(startingCellPos.x, startingCellPos.y + (cell*sign(cellsToCheckCount)))
 					var targetMove = get_parent().checkEntityMovePos(self, cellToCheck)
 					
 					if targetMove == false:
 						validMove = false
+						print("Compartment: Invalid move at : " + str(cellToCheck))
+
+
 			
 			if validMove:
+				print("Compartment: Valid Move at: " + str(targetCellPos))
 				if get_parent().checkEntityMovePos(self, targetCellPos):
 					var targetCell = get_parent().getCell(targetCellPos)
 					if is_instance_valid(targetCell):
@@ -125,15 +148,31 @@ func setMoveDirection(newMousePos):
 						
 						# This is the position that the compartment will be moved in
 						moveTargetPos = targetCellPos
-
+		
+			#elif lastValidMovePos.distance_to(targetCellPos) <= 2:
+				#if get_parent().checkEntityMovePos(self, lastValidMovePos):
+					#var targetCell = get_parent().getCell(lastValidMovePos)
+					#if is_instance_valid(targetCell):
+						#offsetPos = targetCell.global_position
+						#
+						## This is the position that the compartment will be moved in
+						#moveTargetPos = lastValidMovePos
 
 # This signal will be connected to the grid 
 # when it is made
 func moveComp():
 	moving = true
 	
+	var tween = get_tree().create_tween()
+	tween.tween_property($Shadow, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Shadow, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	
+	global_position = offsetPos
 	$MeshInstance3D.position = Vector3.ZERO
 	$ChildEntities.position = Vector3.ZERO
+	$Shadow.position = Vector3.ZERO
 	
 	# Only move the compartment if the target cell isn't
 	# the same pos as the current pos
@@ -142,7 +181,8 @@ func moveComp():
 			emit_signal("moveEntity", self, moveTargetPos)
 			
 			if is_instance_valid(get_tree()):
-				await get_tree().create_timer(.2).timeout
+				await get_tree().create_timer(.01).timeout
+
 
 	moving = false
 
@@ -152,9 +192,10 @@ func moveComp():
 	selected = false
 	offsetPos = global_position
 	
-	if is_instance_valid(get_viewport()):
-		mousePos = get_viewport().get_mouse_position()
-	mouseNotHovered()
+	g.selectingCompartment = false
+	
+	if mouseInCollider:
+		mouseHovered()
 
 
 func cullChildren():
@@ -165,13 +206,20 @@ func cullChildren():
 
 
 func mouseHovered():
-	mouseHover = true
-	setMeshColor(Color.WHITE)
+	mouseInCollider = true
+	
+	if g.selectingCompartment == false:
+		if selected == false:
+			mouseHover = true
+			setMeshColor(Color.WHITE)
 
 
 func mouseNotHovered():
-	mouseHover = false
-	setMeshColor(Color.GRAY)
+	mouseInCollider = false
+	
+	if selected == false:
+		mouseHover = false
+		setMeshColor(Color.GRAY)
 
 
 func setMeshColor(color:Color):
