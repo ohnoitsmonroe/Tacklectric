@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2j2a5vvqbwlg"]
+
+[resource]
+resource_name = "RedLights"
+cull_mode = 2
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.544921, 0.117193, 0.113228, 1)
