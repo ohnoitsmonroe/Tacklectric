@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://db8e5iyybk0cf"]
+
+[ext_resource type="Texture2D" uid="uid://b4s3v1at6je86" path="res://Entities/Lure/Lure_UVs.png" id="1_hm6ya"]
+
+[resource]
+resource_name = "Material.002"
+cull_mode = 2
+diffuse_mode = 2
+albedo_texture = ExtResource("1_hm6ya")
+roughness = 0.5
+texture_filter = 0
