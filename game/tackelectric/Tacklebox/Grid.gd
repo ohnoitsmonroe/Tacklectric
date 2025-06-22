@@ -208,7 +208,7 @@ func checkEntityMovePos(entity:Entity, targetPos:Vector2):
 # another function
 # We may want to change this, for now I'm just gonna leave it
 func setEntityAtCell(entity:Entity, cell:Cell):
-	entity.global_position = cell.global_position
+
 	
 	# Set the anchorCell
 	entity.anchorCell = cell
@@ -219,7 +219,8 @@ func setEntityAtCell(entity:Entity, cell:Cell):
 	# Update the child entities if the entity is a compartment
 	if entity is Compartment:
 		entity.setChildEntityPositions(cell.gridPos)
-
+	else:
+		entity.global_position = cell.global_position
 
 
 
