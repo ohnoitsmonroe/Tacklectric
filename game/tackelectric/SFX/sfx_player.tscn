@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://brgfr6xuehaqe"]
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D"]

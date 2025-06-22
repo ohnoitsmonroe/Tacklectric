@@ -3,7 +3,7 @@ class_name LineSegment
 
 # The scale the line has to reach to be a grid square
 
-@export var gridScaleLength := 13.5
+@export var gridScaleLength := 10
 
 @onready var mesh = $MeshInstance3D
 
@@ -14,14 +14,8 @@ signal extendedToNewCell
 
 func _physics_process(delta: float) -> void:
 	if canContinueScale:
-		mesh.scale.y += .5
+		mesh.scale.y += 2.1
 	
-		# Emit a signal for the fishing rod when the 
-		# length reaches the length of a cell
-		if int(mesh.scale.y) % int(gridScaleLength) == 0:
-			emit_signal("extendedToNewCell")
-	
-
 
 func setAngle(direction:Vector2):
 	var angle = (direction * Vector2(-1, 1)).angle()
@@ -34,3 +28,8 @@ func setAngle(direction:Vector2):
 
 func stopScale():
 	canContinueScale = false
+
+
+func _on_timer_timeout() -> void:
+	emit_signal("extendedToNewCell")
+	

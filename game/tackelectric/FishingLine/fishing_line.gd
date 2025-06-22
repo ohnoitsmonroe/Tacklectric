@@ -91,7 +91,7 @@ func addLineSegment(direction:Vector2):
 		var cell = grid.getCell(currentCoord + direction)
 		
 		if is_instance_valid(cell):
-			lineSegment.global_position = cell.global_position
+			lineSegment.global_position = Vector3(cell.global_position.x, g.lineHeight, cell.global_position.z)
 			lineSegment.setAngle(currentDirection)
 			currentSegment = lineSegment
 
@@ -121,8 +121,9 @@ func catchFish(_entity):
 		await currentSegment.extendedToNewCell
 
 	lineActive = false
-	print("You won the game!")
-	get_tree().reload_current_scene()
+	
+	g.game_won()
+
 
 # When the line hits a wall
 func endLine(_entity):
