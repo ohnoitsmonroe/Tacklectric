@@ -121,8 +121,9 @@ func catchFish(_entity):
 		await currentSegment.extendedToNewCell
 
 	lineActive = false
-	print("You won the game!")
-	get_tree().reload_current_scene()
+	
+	g.game_won()
+
 
 # When the line hits a wall
 func endLine(_entity):
