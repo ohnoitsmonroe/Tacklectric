@@ -11,7 +11,7 @@
 [node name="Tacklebox" type="Node3D"]
 script = ExtResource("1_prown")
 turnLight = ExtResource("2_trjr1")
-lightSeparation = 0.2
+lightSeparation = 0.3
 
 [node name="Grid" parent="." node_paths=PackedStringArray("setupEntities", "referenceGrid") instance=ExtResource("1_adigq")]
 setupEntities = NodePath("../SetupEntities")
@@ -30,7 +30,7 @@ script = ExtResource("2_vle1h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83752, -1.43427, 1.06546)
 
 [node name="lightOrigin" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.74713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.235962, 2.74713)
 
 [node name="SetupEntities" type="Node3D" parent="."]
 script = ExtResource("2_j68ua")
