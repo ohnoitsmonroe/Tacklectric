@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=4 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://levelInstanceTest.gd" id="1_ty45a"]
 [ext_resource type="PackedScene" uid="uid://os7g5t3vxmd2" path="res://Tacklebox/milton levels/tacklebox_milton_002.tscn" id="2_1hadn"]
+[ext_resource type="PackedScene" uid="uid://4y8sq4lgsdkn" path="res://SFX/music_stabs.tscn" id="3_rbi8d"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_ty45a")
@@ -9,3 +10,5 @@ tacklebox = ExtResource("2_1hadn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.568314, -0.797275, -0.2034, 0.433013, -0.5, 0.75, -0.699657, 0.33816, 0.629388, 0, 4, 0)
+
+[node name="musicStabs" parent="." instance=ExtResource("3_rbi8d")]

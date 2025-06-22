@@ -17,14 +17,19 @@ signal game_is_over
 func game_won():
 	print("Game won!")
 	emit_signal("game_is_won")
+
+	await get_tree().create_timer(5.3).timeout
 	resetVariables()
+	
 	get_tree().reload_current_scene()
 
 
 func game_over():
 	print("Game over!")
-	resetVariables()
+
 	emit_signal("game_is_over")
+	await get_tree().create_timer(1.5).timeout
+	resetVariables()
 	get_tree().reload_current_scene()
 
 func resetVariables():
