@@ -174,9 +174,9 @@ func moveComp():
 	moving = true
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property($Shadow, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property($Shadow, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Shadow, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Shadow, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	
 	global_position = offsetPos
