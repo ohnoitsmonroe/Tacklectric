@@ -27,6 +27,8 @@ var moving := false
 
 var mouseInCollider := false
 
+signal sfx_float
+signal sfx_place
 
 func _ready():
 	if not Engine.is_editor_hint():
@@ -135,19 +137,25 @@ func setMoveDirection(newMousePos):
 					
 					if targetMove == false:
 						validMove = false
-						print("Compartment: Invalid move at : " + str(cellToCheck))
+						#print("Compartment: Invalid move at : " + str(cellToCheck))
 
 
 			
 			if validMove:
-				print("Compartment: Valid Move at: " + str(targetCellPos))
+				#print("Compartment: Valid Move at: " + str(targetCellPos))
 				if get_parent().checkEntityMovePos(self, targetCellPos):
 					var targetCell = get_parent().getCell(targetCellPos)
 					if is_instance_valid(targetCell):
+						if offsetPos != targetCell.global_position:
+							emit_signal("sfx_float")
+			
 						offsetPos = targetCell.global_position
 						
 						# This is the position that the compartment will be moved in
 						moveTargetPos = targetCellPos
+						
+						
+				
 		
 			#elif lastValidMovePos.distance_to(targetCellPos) <= 2:
 				#if get_parent().checkEntityMovePos(self, lastValidMovePos):
@@ -161,12 +169,14 @@ func setMoveDirection(newMousePos):
 # This signal will be connected to the grid 
 # when it is made
 func moveComp():
+	emit_signal("sfx_place")
+	
 	moving = true
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property($Shadow, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property($Shadow, "global_position", offsetPos, .05).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Shadow, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Shadow, "global_position", offsetPos, .2).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	
 	global_position = offsetPos
