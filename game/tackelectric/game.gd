@@ -21,3 +21,6 @@ func loadScene(scene, location) -> void:
 	
 func unloadScene(scene) -> void:
 	scene.queue_free()
+	
+func loadUI() -> void:
+	pass

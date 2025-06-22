@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://o6n60in8h477"]
+[gd_scene load_steps=3 format=3 uid="uid://o6n60in8h477"]
 
 [ext_resource type="Script" path="res://UI/menus/level_list.gd" id="1_yn58f"]
+[ext_resource type="Script" path="res://UI/menus/milton_one.gd" id="2_s1qv8"]
 
 [node name="LevelList" type="VBoxContainer"]
 offset_right = 40.0
@@ -10,5 +11,6 @@ script = ExtResource("1_yn58f")
 [node name="MiltonOne" type="Button" parent="."]
 layout_mode = 2
 text = "Milton One"
+script = ExtResource("2_s1qv8")
 
-[connection signal="pressed" from="MiltonOne" to="." method="_on_milton_one_pressed"]
+[connection signal="pressed" from="MiltonOne" to="MiltonOne" method="_on_pressed"]

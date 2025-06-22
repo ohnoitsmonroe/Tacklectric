@@ -10,10 +10,8 @@
 [ext_resource type="Script" path="res://UI/menus/mute_sfx.gd" id="7_b8ebd"]
 
 [node name="OptionsList" type="VBoxContainer"]
-offset_left = 424.0
-offset_top = 296.0
-offset_right = 651.0
-offset_bottom = 347.0
+offset_right = 227.0
+offset_bottom = 196.0
 script = ExtResource("1_d37hh")
 
 [node name="VolumeSlider" type="HSlider" parent="."]
@@ -57,7 +55,6 @@ layout_mode = 2
 text = "Fullscreen"
 script = ExtResource("3_fej2b")
 
-[connection signal="mouse_exited" from="VolumeSlider" to="VolumeSlider" method="release_focus"]
 [connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="_on_value_changed"]
 [connection signal="pressed" from="MuteMaster" to="MuteMaster" method="_on_pressed"]
 [connection signal="mouse_exited" from="MusicSlider" to="MusicSlider" method="release_focus"]
