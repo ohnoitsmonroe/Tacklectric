@@ -47,6 +47,8 @@ streams = Array[AudioStream]([ExtResource("7_r8brb")])
 pitch_min = 0.9
 pitch_max = 1.1
 
+[node name="model" type="Node3D" parent="."]
+
 [connection signal="sfx_float" from="." to="SFXPlayer_float" method="play_sfx"]
 [connection signal="sfx_place" from="." to="SFXPlayer_place" method="play_sfx"]
 [connection signal="mouse_entered" from="MouseDetector" to="." method="mouseHovered"]
