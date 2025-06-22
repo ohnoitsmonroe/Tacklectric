@@ -15,6 +15,9 @@ var lineActive := false
 
 var currentSegment : LineSegment = null
 
+signal cast
+
+
 # Called from tacklebox or something when its added
 func init(newGrid:Grid, newStartingCoord:Vector2):
 	grid = newGrid
