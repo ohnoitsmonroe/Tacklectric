@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode diffuse_burley;
 
 uniform float scroll_speed : hint_range(0, 2) = 0.08;
 uniform float angle_degrees : hint_range(0, 360) = 45.0;
@@ -24,7 +24,7 @@ void fragment() {
 
 	vec2 texelSize = vec2(1.0) / vec2(textureSize(texture_to_scroll, 0));
 	vec2 snappedUV = round(scaled_uv / texelSize) * texelSize;
-	ALBEDO = texture(texture_to_scroll, snappedUV).rgb;
+	ALBEDO = texture(texture_to_scroll, snappedUV).rgb * vec3(0.05, 0.1, 0.20);
 }
 
 //shader_type spatial;
