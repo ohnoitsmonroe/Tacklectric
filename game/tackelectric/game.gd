@@ -56,8 +56,20 @@ func restartLevel() -> void:
 	loadLevel(g.currentScene)
 	g.selectingCompartment = false
 	
+func nextLevel() -> void:
+	var levelToLoad = g.levelList.find(g.currentScene) + 1
+
+	print("Loading next level, level " + str(levelToLoad))
+	print("levelList size is " + str(g.levelList.size()))
+
+	if g.levelList.size() > levelToLoad:
+		loadLevel(g.levelList[levelToLoad])
+	else:
+		print("At the end of the level list. There is no next level. Loading main menu.")
+		loadMainMenu()
+	
 func game_is_won():
-	loadLevelList()
+	nextLevel()
 
 func game_is_over():
 	await get_tree().create_timer(.8).timeout
