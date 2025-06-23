@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bay4joy10d5ng"]
+
+[resource]
+resource_name = "Material.012"
+cull_mode = 2
+albedo_color = Color(0.541883, 0.551481, 0.817627, 1)
+roughness = 0.5
