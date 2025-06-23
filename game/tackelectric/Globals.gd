@@ -5,6 +5,7 @@ var game = null
 var music = null
 var currentScene : PackedScene = null
 var levelDict = {}
+var levelList:Array[PackedScene]
 
 
 @export var gridSeparation := .52

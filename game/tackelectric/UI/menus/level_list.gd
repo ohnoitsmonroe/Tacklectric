@@ -14,6 +14,7 @@ func _ready() -> void:
 		levelDict[button] = level
 		button.pressed.connect(on_button_pressed.bind(button))
 		
+	g.levelList = levels
 	g.levelDict = levelDict
 
 
