@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dop77nx3uddeq"
-path="res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"
+uid="uid://8tl8sc3ar0us"
+path="res://.godot/imported/1x1.glb-55ec6caf3c9aa42df4cc993f06323038.scn"
 
 [deps]
 
-source_file="res://Tacklebox/TurnLight/Light.glb"
-dest_files=["res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"]
+source_file="res://Entities/Compartment/CompartmentModelsReal/1x1.glb"
+dest_files=["res://.godot/imported/1x1.glb-55ec6caf3c9aa42df4cc993f06323038.scn"]
 
 [params]
 
@@ -33,13 +33,9 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"Metal_Dark": {
+"Material": {
 "use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/Metal_Dark.tres"
-},
-"RedLights": {
-"use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/RedLights.tres"
+"use_external/path": "res://Entities/Compartment/CompartmentModelsReal/Material.tres"
 }
 }
 }

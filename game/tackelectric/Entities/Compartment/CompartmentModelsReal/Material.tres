@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cvl6khx8dkse3"]
+
+[ext_resource type="Texture2D" uid="uid://mm3ooukmqw5w" path="res://Entities/Compartment/CompartmentModelsReal/Plank_Compartment_UVs.png" id="1_1v4tx"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("1_1v4tx")
+texture_filter = 0

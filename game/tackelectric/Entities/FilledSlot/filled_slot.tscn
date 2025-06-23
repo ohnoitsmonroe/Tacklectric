@@ -1,14 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy06gvg4wqydi"]
+[gd_scene load_steps=10 format=3 uid="uid://dy06gvg4wqydi"]
 
 [ext_resource type="ArrayMesh" uid="uid://7aq7ft3i5cdf" path="res://Entities/Compartment/singleCompartment_1x1_Cube_005.res" id="1_epa1d"]
 [ext_resource type="Script" path="res://Entities/FilledSlot/filled_slot.gd" id="1_qant1"]
+[ext_resource type="PackedScene" uid="uid://cpy0so0ukxnaf" path="res://Entities/FilledSlot/Island.glb" id="3_gsfdp"]
+[ext_resource type="Texture2D" uid="uid://cnfpmis1dw2u6" path="res://Entities/FilledSlot/islandGrass_2.png" id="3_lr146"]
+[ext_resource type="Texture2D" uid="uid://b3r5cddht70es" path="res://Entities/FilledSlot/islandGrass_top.png" id="4_1mgy3"]
+[ext_resource type="Texture2D" uid="uid://cnv687ojkmmdi" path="res://Entities/FilledSlot/islandGrass_top1.png" id="4_afaeq"]
+[ext_resource type="Texture2D" uid="uid://cm5ay8dfd1x12" path="res://Entities/FilledSlot/islandGrass_top2.png" id="5_lpc0k"]
+[ext_resource type="Texture2D" uid="uid://baf1emhx0ldsa" path="res://Entities/FilledSlot/islandGrass_1.png" id="5_u41uu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur40y"]
 albedo_color = Color(0.0953091, 0.233287, 0.329294, 1)
+texture_filter = 0
 
 [node name="filledSlot" type="Node3D"]
 script = ExtResource("1_qant1")
+texture1 = ExtResource("5_u41uu")
+texture2 = ExtResource("3_lr146")
+topTexture1 = ExtResource("4_afaeq")
+topTexture2 = ExtResource("5_lpc0k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("1_epa1d")
 surface_material_override/0 = SubResource("StandardMaterial3D_ur40y")
+
+[node name="Island2" parent="." instance=ExtResource("3_gsfdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0733032, 0)
+
+[node name="grassTop" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0.259216, 0)
+sorting_offset = 4.0
+pixel_size = 0.012
+shaded = true
+texture_filter = 0
+render_priority = 3
+texture = ExtResource("4_1mgy3")
+
+[node name="grassTuft" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.40457, 0)
+visible = false
+sorting_offset = 5.0
+pixel_size = 0.012
+billboard = 1
+shaded = true
+texture_filter = 0
+render_priority = 4
+texture = ExtResource("5_u41uu")

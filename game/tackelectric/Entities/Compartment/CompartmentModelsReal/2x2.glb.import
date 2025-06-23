@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dop77nx3uddeq"
-path="res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"
+uid="uid://dax8n0wxnj54c"
+path="res://.godot/imported/2x2.glb-09793a1a1a74f598e476e6a586a0ec95.scn"
 
 [deps]
 
-source_file="res://Tacklebox/TurnLight/Light.glb"
-dest_files=["res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"]
+source_file="res://Entities/Compartment/CompartmentModelsReal/2x2.glb"
+dest_files=["res://.godot/imported/2x2.glb-09793a1a1a74f598e476e6a586a0ec95.scn"]
 
 [params]
 
@@ -31,17 +31,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Metal_Dark": {
-"use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/Metal_Dark.tres"
-},
-"RedLights": {
-"use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/RedLights.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

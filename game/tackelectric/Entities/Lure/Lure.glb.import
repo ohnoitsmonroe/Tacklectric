@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dop77nx3uddeq"
-path="res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"
+uid="uid://csq1but5gmpgd"
+path="res://.godot/imported/Lure.glb-9e8c796c2c775b81d7dae3dbbbc256bc.scn"
 
 [deps]
 
-source_file="res://Tacklebox/TurnLight/Light.glb"
-dest_files=["res://.godot/imported/Light.glb-c86c2a70c146184fbaa01df5f3f367a3.scn"]
+source_file="res://Entities/Lure/Lure.glb"
+dest_files=["res://.godot/imported/Lure.glb-9e8c796c2c775b81d7dae3dbbbc256bc.scn"]
 
 [params]
 
@@ -33,13 +33,9 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"Metal_Dark": {
+"Material.002": {
 "use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/Metal_Dark.tres"
-},
-"RedLights": {
-"use_external/enabled": true,
-"use_external/path": "res://Tacklebox/TurnLight/RedLights.tres"
+"use_external/path": "res://Entities/Lure/Material.002.tres"
 }
 }
 }

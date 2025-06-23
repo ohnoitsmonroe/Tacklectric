@@ -11,5 +11,6 @@ albedo_color = Color(0.493545, 0.493546, 0.493546, 0.184314)
 script = ExtResource("1_a8nmq")
 
 [node name="DebugCube" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("2_ptvqe")
 surface_material_override/0 = SubResource("StandardMaterial3D_y1kxd")

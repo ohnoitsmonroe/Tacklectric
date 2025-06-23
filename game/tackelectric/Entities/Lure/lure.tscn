@@ -1,12 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://csvfy2ksxqjsi"]
+[gd_scene load_steps=7 format=3 uid="uid://csvfy2ksxqjsi"]
 
 [ext_resource type="Script" path="res://Entities/Lure/lure.gd" id="1_m50o3"]
 [ext_resource type="ArrayMesh" uid="uid://bbowc6s00wocc" path="res://Entities/Lure/Lure_Plane.res" id="2_pgwb6"]
+[ext_resource type="PackedScene" uid="uid://csq1but5gmpgd" path="res://Entities/Lure/Lure.glb" id="3_6ckl6"]
+
+[sub_resource type="Animation" id="Animation_1b20p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lure:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ml82h"]
+resource_name = "sway"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lure:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.83333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0.0174533, 0.0174533), Vector3(0.0174533, -0.0174533, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7g1d"]
+_data = {
+"RESET": SubResource("Animation_1b20p"),
+"sway": SubResource("Animation_ml82h")
+}
 
 [node name="lure" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_m50o3")
 startingDirection = 180
 lineContactMethod = "redirect"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("2_pgwb6")
+
+[node name="Lure" parent="." instance=ExtResource("3_6ckl6")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.7, 8.85149e-10, -0.0332184, -0.0101249)
+
+[node name="sway_anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y7g1d")
+}
+
+[editable path="Lure"]
