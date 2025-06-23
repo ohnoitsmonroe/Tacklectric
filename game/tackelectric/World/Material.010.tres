@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dyyuigvp2jbtn"]
+
+[ext_resource type="Texture2D" uid="uid://drax8oh6n2yee" path="res://World/Log_UVs.png" id="1_p7grq"]
+
+[resource]
+resource_name = "Material.010"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("1_p7grq")
+roughness = 0.5
