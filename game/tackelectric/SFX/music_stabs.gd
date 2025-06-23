@@ -7,7 +7,7 @@ signal game_over
 
 
 func _ready():
-	g.game_is_won.connect(game_is_won)
+	g.winText.connect(game_is_won)
 	g.game_is_over.connect(game_is_over)
 
 
