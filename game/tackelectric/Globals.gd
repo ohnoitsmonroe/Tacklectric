@@ -1,6 +1,8 @@
 extends Node
 
 var camera = null
+var game = null
+var music = null
 
 @export var gridSeparation := .52
 @export var lineHeight := .25

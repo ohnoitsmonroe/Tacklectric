@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6gbisw1wpqkn"]
+
+[ext_resource type="Script" path="res://UI/buttons/list_button.gd" id="1_xxrn3"]
+
+[node name="ListButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Template Button"
+script = ExtResource("1_xxrn3")
