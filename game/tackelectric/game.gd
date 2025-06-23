@@ -46,6 +46,8 @@ func loadLevelList() -> void:
 	loadScene(levelList, menuParent)
 	
 func loadLevel(level) -> void:
+	g.level_loaded
+	await get_tree().create_timer(.8).timeout
 	unloadScene(currentInstance)
 	loadScene(level, root)
 	
@@ -58,5 +60,6 @@ func game_is_won():
 	loadLevelList()
 
 func game_is_over():
+	await get_tree().create_timer(.8).timeout
 	restartLevel()
 	
