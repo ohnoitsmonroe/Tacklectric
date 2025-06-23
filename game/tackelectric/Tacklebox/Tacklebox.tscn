@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=6 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/tacklebox.gd" id="1_prown"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="PackedScene" uid="uid://cmg62167gski0" path="res://Tacklebox/TurnLight/turn_light.tscn" id="2_trjr1"]
-[ext_resource type="Script" path="res://Tacklebox/camera_3d.gd" id="2_vle1h"]
-[ext_resource type="PackedScene" uid="uid://c2bqwpepsgld" path="res://Tacklebox/TackleBox_TextureTest.glb" id="5_t4nvl"]
 [ext_resource type="PackedScene" uid="uid://dd7k27d3it1xd" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
 
 [node name="Tacklebox" type="Node3D"]
@@ -17,17 +15,7 @@ lightSeparation = 0.3
 setupEntities = NodePath("../SetupEntities")
 referenceGrid = NodePath("../reference_grid")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999658, -0.0221993, 0.0138717, 0, 0.529919, 0.848048, -0.026177, -0.847757, 0.529738, 1.715, 3.24, 2.89242)
-projection = 1
-current = true
-size = 6.0
-script = ExtResource("2_vle1h")
-
 [node name="reference_grid" parent="." instance=ExtResource("7_vae3t")]
-
-[node name="TackleBox_TextureTest" parent="." instance=ExtResource("5_t4nvl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83752, -1.43427, 1.06546)
 
 [node name="lightOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.235962, 2.74713)
