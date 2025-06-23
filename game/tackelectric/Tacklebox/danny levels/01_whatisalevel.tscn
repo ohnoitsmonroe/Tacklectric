@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://4nn1t00uy7h"]
+
+[ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_w7loo"]
+[ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="2_dki30"]
+[ext_resource type="PackedScene" uid="uid://csvfy2ksxqjsi" path="res://Entities/Lure/lure.tscn" id="3_0l8vn"]
+[ext_resource type="PackedScene" uid="uid://bsnpjv4irh2cv" path="res://Entities/fish.tscn" id="4_utv8w"]
+[ext_resource type="PackedScene" uid="uid://bvttia0s2ogkg" path="res://Entities/LineSpawnPoint/SpawnpointFishingLine.tscn" id="5_0qwm6"]
+
+[node name="Tacklebox" instance=ExtResource("1_w7loo")]
+
+[node name="Compartment_1x1" parent="SetupEntities" index="0" instance=ExtResource("2_dki30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56, 0, 1.56)
+StartingCoord = Vector2(3, 3)
+
+[node name="lure" parent="SetupEntities/Compartment_1x1" index="6" instance=ExtResource("3_0l8vn")]
+
+[node name="fish" parent="SetupEntities" index="1" instance=ExtResource("4_utv8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64, 0, 2.08)
+StartingCoord = Vector2(7, 4)
+
+[node name="lineSpawnPoint" parent="SetupEntities" index="2" instance=ExtResource("5_0qwm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.52)
+StartingCoord = Vector2(0, 1)
