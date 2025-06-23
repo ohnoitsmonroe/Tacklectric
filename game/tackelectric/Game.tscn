@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=20 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
@@ -8,19 +8,71 @@
 [ext_resource type="PackedScene" uid="uid://cyyx0f4dibk6i" path="res://UI/winText/win_text.tscn" id="5_kdxma"]
 [ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
 [ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
+[ext_resource type="PackedScene" uid="uid://cqr12wdhbglf" path="res://World/Log.glb" id="7_xnbnb"]
 [ext_resource type="Script" path="res://escape_label.gd" id="9_kynbr"]
+[ext_resource type="PackedScene" uid="uid://bfp4gyoflj4ke" path="res://World/LilyPad_2.glb" id="9_l50wd"]
 [ext_resource type="Shader" path="res://Tacklebox/tacklebox_model.gdshader" id="10_icvag"]
 [ext_resource type="Texture2D" uid="uid://bh3q2npbdk28k" path="res://water.png" id="11_awmb2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hpyw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymo4t"]
 render_priority = 0
 shader = ExtResource("10_icvag")
-shader_parameter/scroll_speed = 0.02
-shader_parameter/angle_degrees = 90.0
-shader_parameter/repeat_x = 12.0
+shader_parameter/scroll_speed = 0.03
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 20.0
 shader_parameter/repeat_y = 12.0
 shader_parameter/row_offset = 0.0
 shader_parameter/texture_to_scroll = ExtResource("11_awmb2")
+
+[sub_resource type="Gradient" id="Gradient_mr613"]
+colors = PackedColorArray(0.0655482, 0.064899, 0.0337468, 1, 0.953711, 0.96081, 0.951663, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1goc"]
+gradient = SubResource("Gradient_mr613")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nn3vj"]
+ground_bottom_color = Color(0.366944, 0.596021, 0.972739, 1)
+ground_horizon_color = Color(0.718951, 0.849397, 0.960187, 1)
+
+[sub_resource type="Sky" id="Sky_ldxxn"]
+sky_material = SubResource("ProceduralSkyMaterial_nn3vj")
+
+[sub_resource type="Environment" id="Environment_id2hq"]
+sky = SubResource("Sky_ldxxn")
+ambient_light_source = 3
+ambient_light_color = Color(0.504722, 0.620045, 0.763587, 1)
+ambient_light_sky_contribution = 0.51
+ambient_light_energy = 3.0
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 6.19
+ssao_power = 1.21838
+ssao_sharpness = 0.25
+ssao_light_affect = 1.0
+ssil_radius = 4.9
+ssil_intensity = 4.69
+ssil_sharpness = 0.0
+glow_normalized = true
+glow_intensity = 2.0
+glow_bloom = 1.0
+glow_hdr_threshold = 1.48
+glow_hdr_scale = 3.61
+glow_hdr_luminance_cap = 3.0
+glow_map_strength = 0.71
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0.525399, 0.759666, 1)
+fog_sun_scatter = 0.2
+fog_density = 0.0352
+fog_sky_affect = 0.484
+fog_depth_begin = 0.0
+fog_depth_end = 2.0
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.0221139, 0.290164, 0.484458, 1)
+adjustment_enabled = true
+adjustment_brightness = 0.95
+adjustment_contrast = 1.2
+adjustment_color_correction = SubResource("GradientTexture2D_i1goc")
 
 [node name="game" type="Node"]
 script = ExtResource("1_s32mu")
@@ -29,10 +81,45 @@ options = ExtResource("3_her7t")
 levelList = ExtResource("4_n61oj")
 winText = ExtResource("5_kdxma")
 
+[node name="WorldProps" type="Node3D" parent="."]
+
+[node name="water" type="Sprite3D" parent="WorldProps"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 1, 0, -10, -4.37114e-08, 1.73956, -1.79068, 0.985584)
+material_override = SubResource("ShaderMaterial_ymo4t")
+shaded = true
+texture_filter = 0
+texture = ExtResource("11_awmb2")
+
+[node name="Log2" parent="WorldProps" instance=ExtResource("7_xnbnb")]
+transform = Transform3D(0.7, 0, 0, 0, 0.4, 0, 0, 0, 0.7, 1.82869, -1.25, 1.07563)
+
+[node name="LilyPad_2" parent="WorldProps" instance=ExtResource("9_l50wd")]
+transform = Transform3D(0.870716, 0, 0.491785, 0, 1, 0, -0.491785, 0, 0.870716, -3.07587, -1.72668, 0)
+
+[node name="LilyPad_3" parent="WorldProps" instance=ExtResource("9_l50wd")]
+transform = Transform3D(0.148217, 0, 1.9945, 0, 2, 0, -1.9945, 0, 0.148217, 6.67389, -1.70648, -5.03848)
+
+[node name="LilyPad_4" parent="WorldProps" instance=ExtResource("9_l50wd")]
+transform = Transform3D(0.870716, 0, 0.491785, 0, 1, 0, -0.491785, 0, 0.870716, 6.58362, -1.72668, -1.41174)
+
+[node name="LilyPad_5" parent="WorldProps" instance=ExtResource("9_l50wd")]
+transform = Transform3D(-1.35232, 0, 0.362276, 0, 1.4, 0, -0.362276, 0, -1.35232, -0.980396, -1.63321, -2.96141)
+
+[node name="LilyPad_6" parent="WorldProps" instance=ExtResource("9_l50wd")]
+transform = Transform3D(1.98563, 0, -0.239338, 0, 2, 0, 0.239338, 0, 1.98563, 4.14598, -1.60742, 5.11741)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_id2hq")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.568314, -0.797275, -0.2034, 0.433013, -0.5, 0.75, -0.699657, 0.33816, 0.629388, 0, 4, 0)
+transform = Transform3D(-0.386237, -0.757589, -0.526193, 0.724828, -0.602093, 0.334826, -0.570477, -0.252078, 0.781673, 0, 4, 0)
+light_color = Color(0.961979, 0.793664, 0.692853, 1)
+light_energy = 1.5
+light_indirect_energy = 2.0
+shadow_enabled = true
 
 [node name="Menu" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.25
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu"]
 anchors_preset = 15
@@ -71,13 +158,6 @@ script = ExtResource("9_kynbr")
 wait_time = 3.0
 one_shot = true
 
-[node name="water" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.75, -1.25, 1)
-material_override = SubResource("ShaderMaterial_8hpyw")
-pixel_size = 0.15
-transparent = false
-double_sided = false
-texture_filter = 0
-texture = ExtResource("11_awmb2")
-
 [connection signal="timeout" from="CanvasLayer/MarginContainer/EscapeLabel/EscapeTimer" to="CanvasLayer/MarginContainer/EscapeLabel" method="_on_escape_timer_timeout"]
+
+[editable path="CameraPivot"]
