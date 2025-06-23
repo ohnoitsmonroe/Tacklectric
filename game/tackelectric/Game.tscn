@@ -1,26 +1,30 @@
 [gd_scene load_steps=6 format=3 uid="uid://cl7in4ymx2jux"]
 
-[ext_resource type="Script" path="res://levelInstanceTest.gd" id="1_ty45a"]
-[ext_resource type="PackedScene" uid="uid://cdp4slsmv6yrx" path="res://Tacklebox/milton levels/tacklebox_milton_003.tscn" id="2_8kvyo"]
+[ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
+[ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
+[ext_resource type="PackedScene" uid="uid://cyyc4gnjhca30" path="res://UI/menus/options_list.tscn" id="3_her7t"]
 [ext_resource type="PackedScene" uid="uid://4y8sq4lgsdkn" path="res://SFX/music_stabs.tscn" id="3_rbi8d"]
-[ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="4_fx3jj"]
-[ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="5_yndf5"]
+[ext_resource type="PackedScene" uid="uid://o6n60in8h477" path="res://UI/menus/level_list.tscn" id="4_n61oj"]
 
 [node name="game" type="Node"]
-script = ExtResource("1_ty45a")
-tacklebox = ExtResource("2_8kvyo")
+script = ExtResource("1_s32mu")
+mainMenu = ExtResource("2_tttft")
+options = ExtResource("3_her7t")
+levelList = ExtResource("4_n61oj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.568314, -0.797275, -0.2034, 0.433013, -0.5, 0.75, -0.699657, 0.33816, 0.629388, 0, 4, 0)
 
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+
 [node name="musicStabs" parent="." instance=ExtResource("3_rbi8d")]
-
-[node name="tackleboxModel" parent="." instance=ExtResource("4_fx3jj")]
-
-[node name="CameraPivot" parent="." instance=ExtResource("5_yndf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78175, 0, 0.985245)
-
-[node name="Camera3D" parent="CameraPivot" index="0"]
-size = 5.5
-
-[editable path="CameraPivot"]
