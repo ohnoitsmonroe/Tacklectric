@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c2cusieiichmu"]
+
+[ext_resource type="Texture2D" uid="uid://bn1n0env8ttkn" path="res://Entities/Wall/Wall_Rocks_UVs.png" id="1_peal7"]
+
+[resource]
+resource_name = "Spaces"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_peal7")
+texture_filter = 0

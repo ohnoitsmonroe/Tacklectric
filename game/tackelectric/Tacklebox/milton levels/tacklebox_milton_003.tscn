@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdp4slsmv6yrx"]
+[gd_scene load_steps=9 format=3 uid="uid://cdp4slsmv6yrx"]
 
 [ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_57evd"]
 [ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="2_belkf"]
 [ext_resource type="PackedScene" uid="uid://pv2gusgkgcnd" path="res://Entities/Compartment/compartment_1x2.tscn" id="3_2i8k6"]
 [ext_resource type="PackedScene" uid="uid://2hynsec0ptf1" path="res://Entities/Compartment/compartment_2x1.tscn" id="4_uurvt"]
+[ext_resource type="PackedScene" uid="uid://csvfy2ksxqjsi" path="res://Entities/Lure/lure.tscn" id="5_6eb6b"]
 [ext_resource type="PackedScene" uid="uid://cara7ew5hwrqh" path="res://Entities/Compartment/compartment_2x2.tscn" id="5_cnqo5"]
+[ext_resource type="PackedScene" uid="uid://dburw7058bjqr" path="res://Entities/Wall/wall.tscn" id="6_5xmie"]
+[ext_resource type="PackedScene" uid="uid://dy06gvg4wqydi" path="res://Entities/FilledSlot/filled_slot.tscn" id="8_swecc"]
 
 [node name="Tacklebox_milton_003" instance=ExtResource("1_57evd")]
 
@@ -18,6 +21,72 @@ StartingCoord = Vector2(3, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 0)
 StartingCoord = Vector2(5, 0)
 
+[node name="lure" parent="SetupEntities/compartment_2x1" index="9" instance=ExtResource("5_6eb6b")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+StartingCoord = Vector2(1, 0)
+startingDirection = 90
+
 [node name="Compartment_2x2" parent="SetupEntities" index="3" instance=ExtResource("5_cnqo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 1.04)
 StartingCoord = Vector2(1, 2)
+
+[node name="lure" parent="SetupEntities/Compartment_2x2" index="9" instance=ExtResource("5_6eb6b")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+startingDirection = 90
+
+[node name="wall" parent="SetupEntities" index="4" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0, 1.04)
+StartingCoord = Vector2(4, 2)
+
+[node name="wall2" parent="SetupEntities" index="5" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 0.52)
+StartingCoord = Vector2(1, 1)
+
+[node name="wall3" parent="SetupEntities" index="6" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 2.08)
+StartingCoord = Vector2(5, 4)
+
+[node name="wall4" parent="SetupEntities" index="7" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12, 0, 1.56)
+StartingCoord = Vector2(6, 3)
+
+[node name="wall5" parent="SetupEntities" index="8" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56, 0, 2.08)
+StartingCoord = Vector2(3, 4)
+
+[node name="wall6" parent="SetupEntities" index="9" instance=ExtResource("6_5xmie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 1.56)
+StartingCoord = Vector2(5, 3)
+
+[node name="lure" parent="SetupEntities" index="10" instance=ExtResource("5_6eb6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+StartingCoord = Vector2(2, 0)
+startingDirection = 0
+
+[node name="lure2" parent="SetupEntities" index="11" instance=ExtResource("5_6eb6b")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.6, 0, 1.04)
+StartingCoord = Vector2(5, 2)
+
+[node name="filledSlot" parent="SetupEntities" index="12" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.56)
+StartingCoord = Vector2(0, 3)
+
+[node name="filledSlot2" parent="SetupEntities" index="13" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.04)
+StartingCoord = Vector2(0, 2)
+
+[node name="filledSlot3" parent="SetupEntities" index="14" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 2.08)
+StartingCoord = Vector2(1, 4)
+
+[node name="filledSlot4" parent="SetupEntities" index="15" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08)
+StartingCoord = Vector2(0, 4)
+
+[node name="filledSlot5" parent="SetupEntities" index="16" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64, 0, 1.04)
+StartingCoord = Vector2(7, 2)
+
+[node name="filledSlot6" parent="SetupEntities" index="17" instance=ExtResource("8_swecc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64, 0, 0.52)
+StartingCoord = Vector2(7, 1)

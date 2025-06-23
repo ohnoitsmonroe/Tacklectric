@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=8 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
 [ext_resource type="PackedScene" uid="uid://cyyc4gnjhca30" path="res://UI/menus/options_list.tscn" id="3_her7t"]
 [ext_resource type="PackedScene" uid="uid://4y8sq4lgsdkn" path="res://SFX/music_stabs.tscn" id="3_rbi8d"]
 [ext_resource type="PackedScene" uid="uid://o6n60in8h477" path="res://UI/menus/level_list.tscn" id="4_n61oj"]
+[ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
+[ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_s32mu")
@@ -28,3 +30,8 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="musicStabs" parent="." instance=ExtResource("3_rbi8d")]
+
+[node name="CameraPivot" parent="." instance=ExtResource("6_d2og8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 1.15352)
+
+[node name="tackleboxModel" parent="." instance=ExtResource("7_ffaye")]

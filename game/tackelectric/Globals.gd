@@ -18,7 +18,9 @@ var selectingCompartment := false
 # Global signals so they can be triggered from multiple entities
 signal game_is_won
 signal game_is_over
-
+signal level_loaded
+signal playMode
+signal attractMode
 
 func game_won():
 	print("Game won!")
@@ -30,16 +32,23 @@ func game_won():
 
 	#get_tree().reload_current_scene()
 
+func levelLoaded():
+	emit_signal("level_loaded")
+
+func startPlayMode():
+	emit_signal("playMode")
+
+func startAttractMode():
+	emit_signal("attractMode")
+
 
 func game_over():
 	print("Game over!")
-
-
-	await get_tree().create_timer(1.5).timeout
 	resetVariables()
 	
 	emit_signal("game_is_over")
-	#get_tree().reload_current_scene()
+	
+
 
 func resetVariables():
 	selectingCompartment = false
