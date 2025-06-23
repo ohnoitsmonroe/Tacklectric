@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=9 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
 [ext_resource type="PackedScene" uid="uid://cyyc4gnjhca30" path="res://UI/menus/options_list.tscn" id="3_her7t"]
 [ext_resource type="PackedScene" uid="uid://4y8sq4lgsdkn" path="res://SFX/music_stabs.tscn" id="3_rbi8d"]
 [ext_resource type="PackedScene" uid="uid://o6n60in8h477" path="res://UI/menus/level_list.tscn" id="4_n61oj"]
+[ext_resource type="PackedScene" uid="uid://cyyx0f4dibk6i" path="res://UI/winText/win_text.tscn" id="5_kdxma"]
 [ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
 [ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
 
@@ -13,6 +14,7 @@ script = ExtResource("1_s32mu")
 mainMenu = ExtResource("2_tttft")
 options = ExtResource("3_her7t")
 levelList = ExtResource("4_n61oj")
+winText = ExtResource("5_kdxma")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.568314, -0.797275, -0.2034, 0.433013, -0.5, 0.75, -0.699657, 0.33816, 0.629388, 0, 4, 0)
@@ -35,3 +37,6 @@ layout_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 1.15352)
 
 [node name="tackleboxModel" parent="." instance=ExtResource("7_ffaye")]
+
+[node name="wintextSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77514, 2.25, 2.52878)

@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyyx0f4dibk6i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6fx4"]
+albedo_color = Color(0.587945, 1, 0.552501, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_uxwtf"]
+material = SubResource("StandardMaterial3D_y6fx4")
+text = "You Won"
+
+[sub_resource type="Animation" id="Animation_2c0pw"]
+resource_name = "win"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.83333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0.261799, -0.174533), Vector3(0.261799, -0.0872665, 0.139626), Vector3(-0.0872665, 0.174533, -0.0349066)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.6, 1.06667, 1.86667, 3.76667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.05, 1.05, 1.05), Vector3(0.7, 0.7, 0.7), Vector3(1, 1, 1), Vector3(1.07786, 1.07786, 1.07786), Vector3(1.1, 1.1, 1.1), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tk3g5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bj6n5"]
+_data = {
+"RESET": SubResource("Animation_tk3g5"),
+"win": SubResource("Animation_2c0pw")
+}
+
+[node name="winText" type="Node3D"]
+transform = Transform3D(10, 0, 0, 0, 6.80325, 7.32911, 0, -7.32911, 6.80325, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TextMesh_uxwtf")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bj6n5")
+}
+autoplay = "win"

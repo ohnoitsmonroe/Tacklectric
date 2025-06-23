@@ -21,10 +21,13 @@ signal game_is_over
 signal level_loaded
 signal playMode
 signal attractMode
+signal winText
 
 func game_won():
 	print("Game won!")
-
+	
+	emit_signal("winText")
+	
 	await get_tree().create_timer(5.3).timeout
 	resetVariables()
 	

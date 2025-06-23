@@ -3,6 +3,7 @@ extends Node
 @export var mainMenu : PackedScene = null
 @export var options : PackedScene = null
 @export var levelList : PackedScene = null
+@export var winText : PackedScene = null
 @onready var menuParent = $Menu/MarginContainer/CenterContainer
 @onready var root = $"."
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	
 	g.game_is_won.connect(game_is_won)
 	g.game_is_over.connect(game_is_over)
+	g.winText.connect(addWinText)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -77,7 +79,13 @@ func nextLevel() -> void:
 		loadMainMenu()
 	
 func game_is_won():
+
+	
 	nextLevel()
+
+func addWinText():
+	var newWinText = winText.instantiate()
+	$wintextSpawn.add_child(newWinText)
 
 func game_is_over():
 	await get_tree().create_timer(.8).timeout
