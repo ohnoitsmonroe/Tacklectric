@@ -6,6 +6,7 @@ var is_open := false
 
 func _ready() -> void:
 	g.level_loaded.connect(closeAndReOpen)
+	g.attractMode.connect(closeOnlyIfOpen)
 
 
 func closeAndReOpen():
@@ -27,3 +28,8 @@ func open():
 func close():
 	is_open = false
 	$anim.play("close")
+	
+func closeOnlyIfOpen():
+	if is_open == true:
+		$anim.play("close")
+		is_open = false

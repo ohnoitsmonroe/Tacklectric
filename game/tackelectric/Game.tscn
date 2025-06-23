@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=10 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cyyx0f4dibk6i" path="res://UI/winText/win_text.tscn" id="5_kdxma"]
 [ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
 [ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
+[ext_resource type="Script" path="res://escape_label.gd" id="9_kynbr"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_s32mu")
@@ -40,3 +41,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 1.15352)
 
 [node name="wintextSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77514, 2.25, 2.52878)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 904.0
+offset_right = 1152.0
+offset_bottom = 24.0
+
+[node name="EscapeLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "keep holding escape to go back"
+script = ExtResource("9_kynbr")
+
+[node name="EscapeTimer" type="Timer" parent="CanvasLayer/MarginContainer/EscapeLabel"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="CanvasLayer/MarginContainer/EscapeLabel/EscapeTimer" to="CanvasLayer/MarginContainer/EscapeLabel" method="_on_escape_timer_timeout"]

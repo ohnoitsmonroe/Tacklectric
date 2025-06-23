@@ -8,6 +8,7 @@ extends Node
 @onready var root = $"."
 
 var currentInstance = null
+var buttonHeld = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,14 +24,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func _input(event):
+	if event.is_action_pressed("restart"):
+		restartLevel()
+		
 func loadScene(scene, location) -> void:
 	g.currentScene = scene
 	currentInstance = g.currentScene.instantiate()
 	location.add_child(currentInstance)
-	
-func _input(event):
-	if event.is_action_pressed("restart"):
-		restartLevel()
+
 		
 func unloadScene(scene) -> void:
 	scene.queue_free()
@@ -47,6 +49,7 @@ func loadOptions() -> void:
 
 
 func loadLevelList() -> void:
+	g.startAttractMode()
 	unloadScene(currentInstance)
 	loadScene(levelList, menuParent)
 
@@ -77,10 +80,9 @@ func nextLevel() -> void:
 	else:
 		print("At the end of the level list. There is no next level. Loading main menu.")
 		loadMainMenu()
+		
 	
 func game_is_won():
-
-	
 	nextLevel()
 
 func addWinText():
@@ -90,4 +92,3 @@ func addWinText():
 func game_is_over():
 	await get_tree().create_timer(.8).timeout
 	restartLevel()
-	
