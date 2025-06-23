@@ -23,6 +23,8 @@ signal playMode
 signal attractMode
 signal winText
 
+signal cast
+
 func game_won():
 	print("Game won!")
 	
@@ -50,8 +52,11 @@ func game_over():
 	resetVariables()
 	
 	emit_signal("game_is_over")
-	
 
+# Used for the fishing rod animation
+# called from the fishing line
+func castRod():
+	emit_signal("cast")
 
 func resetVariables():
 	selectingCompartment = false

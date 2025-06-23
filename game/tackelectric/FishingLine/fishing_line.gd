@@ -31,6 +31,9 @@ func _ready():
 	iterateLine()
 
 func iterateLine():
+	g.castRod()
+	await get_tree().create_timer(.5).timeout
+
 	emit_signal("sfx_cast")
 	
 	lineActive = true
@@ -137,9 +140,8 @@ func catchFish(_entity):
 func endLine(_entity):
 	if is_instance_valid(currentSegment):
 		await currentSegment.extendedToNewCell
-	
 
-	
+
 	# Stop when it hits the edge
 	if is_instance_valid(currentSegment):
 		currentSegment.stopScale()

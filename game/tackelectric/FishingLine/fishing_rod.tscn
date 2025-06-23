@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://o14pfryq6hrb"]
+
+[ext_resource type="Script" path="res://FishingLine/fishing_rod.gd" id="1_0p5yy"]
+[ext_resource type="PackedScene" uid="uid://dtvjjytfko8hr" path="res://FishingLine/Fishing_Rod_Handle.glb" id="1_qvc81"]
+[ext_resource type="PackedScene" uid="uid://b1yvge1h2k3vb" path="res://FishingLine/Fishing_Rod_01.glb" id="2_1ntg8"]
+[ext_resource type="PackedScene" uid="uid://dvm30681ehiex" path="res://FishingLine/Fishing_Rod_02.glb" id="3_ffoqf"]
+[ext_resource type="PackedScene" uid="uid://dfnvclhj8foc2" path="res://FishingLine/Fishing_Rod_03.glb" id="4_3bs0k"]
+[ext_resource type="PackedScene" uid="uid://cujc8fljx71am" path="res://FishingLine/Fishing_Rod_04.glb" id="5_6rj2d"]
+
+[sub_resource type="Animation" id="Animation_mebyw"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667, 2.26667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0.0872665, 0.174533), Vector3(-0.0872665, 0.0349066, -0.0523599)]
+}
+
+[sub_resource type="Animation" id="Animation_olfgh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("model:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wgtdx"]
+resource_name = "cast"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.349066), Vector3(0, 0, 2.0944), Vector3(0, 0, -0.698132), Vector3(0, 0, 0.174533), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("model:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.95, 0.95, 0.95), Vector3(1.5, 1.5, 1.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cb83"]
+_data = {
+"RESET": SubResource("Animation_olfgh"),
+"cast": SubResource("Animation_wgtdx"),
+"idle": SubResource("Animation_mebyw")
+}
+
+[node name="fishingRod" type="Node3D"]
+script = ExtResource("1_0p5yy")
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="Fishing_Rod_Handle2" parent="model" instance=ExtResource("1_qvc81")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Fishing_Rod_012" parent="model/Fishing_Rod_Handle2" instance=ExtResource("2_1ntg8")]
+
+[node name="Fishing_Rod_022" parent="model/Fishing_Rod_Handle2/Fishing_Rod_012" instance=ExtResource("3_ffoqf")]
+
+[node name="Fishing_Rod_032" parent="model/Fishing_Rod_Handle2/Fishing_Rod_012/Fishing_Rod_022" instance=ExtResource("4_3bs0k")]
+
+[node name="Fishing_Rod_042" parent="model/Fishing_Rod_Handle2/Fishing_Rod_012/Fishing_Rod_022/Fishing_Rod_032" instance=ExtResource("5_6rj2d")]
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8cb83")
+}
+autoplay = "idle"
