@@ -1,5 +1,8 @@
 extends VBoxContainer
 
+@export var miltonLevels:Array[PackedScene]
+@export var jamesLevels:Array[PackedScene]
+@export var dannyLevels:Array[PackedScene]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -8,3 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+
+func _on_milton_one_pressed() -> void:
+	g.game.loadLevel(miltonLevels[0])

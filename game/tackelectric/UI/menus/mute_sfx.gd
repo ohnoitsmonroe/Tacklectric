@@ -4,7 +4,7 @@ extends Button
 
 @onready var _bus := AudioServer.get_bus_index(audio_bus)
 
-var isMuted : bool = false
+var isMuted : bool = AudioServer.is_bus_mute(_bus)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
