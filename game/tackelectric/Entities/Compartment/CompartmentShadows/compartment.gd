@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 				
 						selected = true
 						mousePos = get_viewport().get_mouse_position()
-						print("Compartment setting mouse pos: " + str(mousePos))
+						#print("Compartment setting mouse pos: " + str(mousePos))
 						
 						# Set the move target pos to be the current
 						# position before its moved
