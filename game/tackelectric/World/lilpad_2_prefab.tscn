@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gn4q8wthmwmr"]
+
+[ext_resource type="PackedScene" uid="uid://bfp4gyoflj4ke" path="res://World/LilyPad_2.glb" id="1_rdsrl"]
+
+[node name="Lilpad_2_Prefab" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 0, 0)
+
+[node name="LilyPad_2" parent="." instance=ExtResource("1_rdsrl")]
