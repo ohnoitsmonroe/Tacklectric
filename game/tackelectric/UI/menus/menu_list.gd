@@ -15,10 +15,8 @@ func _process(delta: float) -> void:
 
 
 func _on_start_pressed() -> void:
-	g.game.loadScene(levels, $"../")
-	g.game.unloadScene($".")
+	g.game.loadLevelList()
 
 
 func _on_options_pressed() -> void:
-	g.game.loadScene(options, $"../")
-	g.game.unloadScene($".")
+	g.game.loadOptions()

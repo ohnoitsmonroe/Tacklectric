@@ -5,36 +5,58 @@ extends Node
 @export var levelList : PackedScene = null
 @onready var menuParent = $Menu/MarginContainer/CenterContainer
 @onready var root = $"."
-var currentScene = null
+
+var currentInstance = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	g.game = self
+	g.currentScene = mainMenu
 	loadScene(mainMenu, menuParent)
+	
+	g.game_is_won.connect(game_is_won)
+	g.game_is_over.connect(game_is_over)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
 func loadScene(scene, location) -> void:
-	currentScene = scene.instantiate()
-	location.add_child(currentScene)
+	g.currentScene = scene
+	currentInstance = g.currentScene.instantiate()
+	location.add_child(currentInstance)
 	
+func _input(event):
+	if event.is_action_pressed("restart"):
+		restartLevel()
+		
 func unloadScene(scene) -> void:
 	scene.queue_free()
 	
 func loadMainMenu() -> void:
-	unloadScene(currentScene)
+	unloadScene(currentInstance)
 	loadScene(mainMenu, menuParent)
 	
 func loadOptions() -> void:
-	unloadScene(currentScene)
+	unloadScene(currentInstance)
 	loadScene(options, menuParent)
 	
 func loadLevelList() -> void:
-	unloadScene(currentScene)
+	unloadScene(currentInstance)
 	loadScene(levelList, menuParent)
 	
 func loadLevel(level) -> void:
-	unloadScene(currentScene)
+	unloadScene(currentInstance)
 	loadScene(level, root)
+	
+func restartLevel() -> void:
+	print("Restarting level")
+	loadLevel(g.currentScene)
+	g.selectingCompartment = false
+	
+func game_is_won():
+	loadLevelList()
+
+func game_is_over():
+	restartLevel()
+	

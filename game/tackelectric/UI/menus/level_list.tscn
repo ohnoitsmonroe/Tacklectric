@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/menus/level_list.gd" id="1_yn58f"]
 [ext_resource type="PackedScene" uid="uid://os7g5t3vxmd2" path="res://Tacklebox/milton levels/tacklebox_milton_002.tscn" id="2_ov5vr"]
-[ext_resource type="PackedScene" uid="uid://4nn1t00uy7h" path="res://Tacklebox/danny levels/whatisalevel.tscn" id="3_lmgxy"]
+[ext_resource type="PackedScene" uid="uid://4nn1t00uy7h" path="res://Tacklebox/danny levels/01_whatisalevel.tscn" id="3_lmgxy"]
 [ext_resource type="PackedScene" uid="uid://b6gbisw1wpqkn" path="res://UI/buttons/list_button.tscn" id="3_vjjcy"]
 
 [node name="LevelList" type="VBoxContainer"]
