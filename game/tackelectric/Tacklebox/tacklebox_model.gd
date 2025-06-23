@@ -23,11 +23,13 @@ func closeAndReOpen():
 func open():
 	is_open = true
 	$anim.play("open")
+	g.emit_signal("revealProps")
 
 
 func close():
 	is_open = false
 	$anim.play("close")
+	g.emit_signal("shrinkProps")
 	
 func closeOnlyIfOpen():
 	if is_open == true:

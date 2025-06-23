@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cep30mtltyrex"]
+[gd_scene load_steps=12 format=3 uid="uid://cep30mtltyrex"]
 
 [ext_resource type="Script" path="res://Tacklebox/tacklebox_model.gd" id="1_nrv4v"]
 [ext_resource type="PackedScene" uid="uid://2bug8gxvju66" path="res://Tacklebox/TackleboxModelsReal/Tacklebox_Base.glb" id="1_tf0gq"]
 [ext_resource type="PackedScene" uid="uid://bbq5f2t8rriqf" path="res://Tacklebox/TackleboxModelsReal/Tacklebox_Top.glb" id="2_qd600"]
+[ext_resource type="Shader" path="res://Tacklebox/tacklebox_model.gdshader" id="4_ekpkg"]
+[ext_resource type="Texture2D" uid="uid://l54cwskyytgm" path="res://Tacklebox/water_tacklebox.png" id="4_r1hwu"]
 
 [sub_resource type="Animation" id="Animation_id8uj"]
 length = 0.001
@@ -123,6 +125,16 @@ _data = {
 "open": SubResource("Animation_3tytu")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_485xg"]
+render_priority = 0
+shader = ExtResource("4_ekpkg")
+shader_parameter/scroll_speed = 0.08
+shader_parameter/angle_degrees = 0.0
+shader_parameter/repeat_x = 3.0
+shader_parameter/repeat_y = 3.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("4_r1hwu")
+
 [node name="tackleboxModel" type="Node3D"]
 script = ExtResource("1_nrv4v")
 
@@ -140,3 +152,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ybbb7")
 }
 autoplay = "default"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.84542, 0.0158081, 1.05546)
+material_override = SubResource("ShaderMaterial_485xg")
+pixel_size = 0.0161
+texture = ExtResource("4_r1hwu")
