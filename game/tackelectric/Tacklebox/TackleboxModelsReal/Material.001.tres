@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bulb6p1por8b7"]
+
+[ext_resource type="Texture2D" uid="uid://dulviep4ur31" path="res://Tacklebox/TackleboxModelsReal/TackleBox_UV_Map.png" id="1_8fgub"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_8fgub")
+roughness = 0.5
