@@ -1,17 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://cara7ew5hwrqh"]
+[gd_scene load_steps=6 format=3 uid="uid://cara7ew5hwrqh"]
 
 [ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_wkgr7"]
 [ext_resource type="ArrayMesh" uid="uid://bnl8w7urtbjo" path="res://Entities/Compartment/Compartment_Planks_Cube_016.res" id="2_v0p3e"]
 [ext_resource type="Texture2D" uid="uid://cicacu8ahubcu" path="res://Entities/Compartment/CompartmentShadows/CompartmentShadow_2x2.png" id="3_foh81"]
+[ext_resource type="PackedScene" uid="uid://dax8n0wxnj54c" path="res://Entities/Compartment/CompartmentModelsReal/2x2.glb" id="4_astwc"]
+[ext_resource type="Material" uid="uid://cvl6khx8dkse3" path="res://Entities/Compartment/CompartmentModelsReal/Material.tres" id="5_s5nlu"]
 
-[node name="Compartment_2x2" instance=ExtResource("1_wkgr7")]
+[node name="Compartment_2x2" node_paths=PackedStringArray("mesh") instance=ExtResource("1_wkgr7")]
+mesh = NodePath("model/2x2/singleCompartment_2x2")
 Size = Vector2(2, 2)
 
 [node name="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
 mesh = ExtResource("2_v0p3e")
 
 [node name="Shadow" parent="." index="3"]
 centered = false
 offset = Vector2(-16, -48)
 texture = ExtResource("3_foh81")
+
+[node name="2x2" parent="model" index="0" instance=ExtResource("4_astwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="singleCompartment_2x2" parent="model/2x2" index="0"]
+surface_material_override/0 = ExtResource("5_s5nlu")
+
+[editable path="model/2x2"]

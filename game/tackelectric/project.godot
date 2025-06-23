@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 g="*res://Globals.gd"
+m="*res://Music/music.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

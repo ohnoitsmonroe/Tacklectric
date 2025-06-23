@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdp4slsmv6yrx"]
+
+[ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_57evd"]
+[ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="2_belkf"]
+[ext_resource type="PackedScene" uid="uid://pv2gusgkgcnd" path="res://Entities/Compartment/compartment_1x2.tscn" id="3_2i8k6"]
+[ext_resource type="PackedScene" uid="uid://2hynsec0ptf1" path="res://Entities/Compartment/compartment_2x1.tscn" id="4_uurvt"]
+[ext_resource type="PackedScene" uid="uid://cara7ew5hwrqh" path="res://Entities/Compartment/compartment_2x2.tscn" id="5_cnqo5"]
+
+[node name="Tacklebox_milton_003" instance=ExtResource("1_57evd")]
+
+[node name="Compartment_1x1" parent="SetupEntities" index="0" instance=ExtResource("2_belkf")]
+
+[node name="Compartment_1x2" parent="SetupEntities" index="1" instance=ExtResource("3_2i8k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56, 0, 0)
+StartingCoord = Vector2(3, 0)
+
+[node name="compartment_2x1" parent="SetupEntities" index="2" instance=ExtResource("4_uurvt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 0)
+StartingCoord = Vector2(5, 0)
+
+[node name="Compartment_2x2" parent="SetupEntities" index="3" instance=ExtResource("5_cnqo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 1.04)
+StartingCoord = Vector2(1, 2)

@@ -1,16 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://delh0y0jtovjt"]
+[gd_scene load_steps=5 format=3 uid="uid://delh0y0jtovjt"]
 
 [ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_wtttd"]
 [ext_resource type="ArrayMesh" uid="uid://7aq7ft3i5cdf" path="res://Entities/Compartment/singleCompartment_1x1_Cube_005.res" id="2_1sk2t"]
+[ext_resource type="PackedScene" uid="uid://8tl8sc3ar0us" path="res://Entities/Compartment/CompartmentModelsReal/1x1.glb" id="3_b5080"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wu22r"]
 size = Vector3(0.6, 0.6, 0.6)
 
-[node name="Compartment_1x1" instance=ExtResource("1_wtttd")]
+[node name="Compartment_1x1" node_paths=PackedStringArray("mesh") instance=ExtResource("1_wtttd")]
+mesh = NodePath("model/1x1/singleCompartment_1x1")
 
 [node name="MeshInstance3D" parent="." index="0"]
+visible = false
 mesh = ExtResource("2_1sk2t")
 surface_material_override/0 = null
 
 [node name="CollisionShape3D" parent="MouseDetector" index="0"]
 shape = SubResource("BoxShape3D_wu22r")
+
+[node name="1x1" parent="model" index="0" instance=ExtResource("3_b5080")]
+
+[editable path="model/1x1"]
