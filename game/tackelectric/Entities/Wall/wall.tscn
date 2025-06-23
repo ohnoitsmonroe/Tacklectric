@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dburw7058bjqr"]
+[gd_scene load_steps=5 format=3 uid="uid://dburw7058bjqr"]
 
 [ext_resource type="Script" path="res://Entities/Wall/wall.gd" id="1_2i3vs"]
+[ext_resource type="Material" uid="uid://c2cusieiichmu" path="res://Entities/Wall/Spaces.tres" id="2_6vunw"]
+[ext_resource type="PackedScene" uid="uid://crwjx3qahar7j" path="res://Entities/Wall/Wall_Rocks.glb" id="2_7loe8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_86paw"]
 size = Vector3(0.5, 1, 0.5)
@@ -10,4 +12,9 @@ script = ExtResource("1_2i3vs")
 lineContactMethod = "endLine"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_86paw")
+surface_material_override/0 = ExtResource("2_6vunw")
+
+[node name="Wall_Rocks2" parent="." instance=ExtResource("2_7loe8")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
