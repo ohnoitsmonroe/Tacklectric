@@ -4,6 +4,21 @@
 [ext_resource type="ArrayMesh" uid="uid://bbowc6s00wocc" path="res://Entities/Lure/Lure_Plane.res" id="2_pgwb6"]
 [ext_resource type="PackedScene" uid="uid://csq1but5gmpgd" path="res://Entities/Lure/Lure.glb" id="3_6ckl6"]
 
+[sub_resource type="Animation" id="Animation_1b20p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lure:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ml82h"]
 resource_name = "sway"
 length = 4.0
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0.0174533, 0.0174533), Vector3(0.0174533, -0.0174533, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1b20p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Lure:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y7g1d"]
