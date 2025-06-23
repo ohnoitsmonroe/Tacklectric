@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl7in4ymx2jux"]
+[gd_scene load_steps=13 format=3 uid="uid://cl7in4ymx2jux"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_s32mu"]
 [ext_resource type="PackedScene" uid="uid://b1msks0f8mpgh" path="res://UI/menus/menu_list.tscn" id="2_tttft"]
@@ -9,6 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
 [ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
 [ext_resource type="Script" path="res://escape_label.gd" id="9_kynbr"]
+[ext_resource type="Shader" path="res://Tacklebox/tacklebox_model.gdshader" id="10_icvag"]
+[ext_resource type="Texture2D" uid="uid://bh3q2npbdk28k" path="res://water.png" id="11_awmb2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hpyw"]
+render_priority = 0
+shader = ExtResource("10_icvag")
+shader_parameter/scroll_speed = 0.02
+shader_parameter/angle_degrees = 90.0
+shader_parameter/repeat_x = 12.0
+shader_parameter/repeat_y = 12.0
+shader_parameter/row_offset = 0.0
+shader_parameter/texture_to_scroll = ExtResource("11_awmb2")
 
 [node name="game" type="Node"]
 script = ExtResource("1_s32mu")
@@ -58,5 +70,14 @@ script = ExtResource("9_kynbr")
 [node name="EscapeTimer" type="Timer" parent="CanvasLayer/MarginContainer/EscapeLabel"]
 wait_time = 3.0
 one_shot = true
+
+[node name="water" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.75, -1.25, 1)
+material_override = SubResource("ShaderMaterial_8hpyw")
+pixel_size = 0.15
+transparent = false
+double_sided = false
+texture_filter = 0
+texture = ExtResource("11_awmb2")
 
 [connection signal="timeout" from="CanvasLayer/MarginContainer/EscapeLabel/EscapeTimer" to="CanvasLayer/MarginContainer/EscapeLabel" method="_on_escape_timer_timeout"]

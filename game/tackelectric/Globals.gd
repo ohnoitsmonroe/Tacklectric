@@ -25,6 +25,9 @@ signal winText
 
 signal cast
 
+signal shrinkProps
+signal revealProps
+
 func game_won():
 	print("Game won!")
 	
