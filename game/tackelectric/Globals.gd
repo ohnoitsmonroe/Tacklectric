@@ -19,6 +19,8 @@ var selectingCompartment := false
 signal game_is_won
 signal game_is_over
 signal level_loaded
+signal playMode
+signal attractMode
 
 func game_won():
 	print("Game won!")
@@ -30,8 +32,15 @@ func game_won():
 
 	#get_tree().reload_current_scene()
 
-func load_level():
+func levelLoaded():
 	emit_signal("level_loaded")
+
+func startPlayMode():
+	emit_signal("playMode")
+
+func startAttractMode():
+	emit_signal("attractMode")
+
 
 func game_over():
 	print("Game over!")
