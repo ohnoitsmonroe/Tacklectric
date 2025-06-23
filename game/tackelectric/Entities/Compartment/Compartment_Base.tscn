@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://crl1xgwujjc3c"]
+[gd_scene load_steps=15 format=3 uid="uid://crl1xgwujjc3c"]
 
 [ext_resource type="Script" path="res://Entities/Compartment/CompartmentShadows/compartment.gd" id="1_0u0ji"]
 [ext_resource type="ArrayMesh" uid="uid://rorf8qymp3aw" path="res://Tacklebox/singleSpace_Cube_004.res" id="2_rwn5c"]
@@ -12,6 +12,82 @@ albedo_color = Color(0.791814, 8.70204e-05, 0.642334, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pny3m"]
 size = Vector3(1.1, 0.6, 1.1)
+
+[sub_resource type="Animation" id="Animation_oylco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dmpt7"]
+resource_name = "sway"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667, 4.56667, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0174533, -0.0349066, 0.0174533), Vector3(-0.0174533, 0.0174533, 0), Vector3(0.0174533, 0, -0.0349066)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vu5v2"]
+_data = {
+"RESET": SubResource("Animation_oylco"),
+"sway": SubResource("Animation_dmpt7")
+}
+
+[sub_resource type="Animation" id="Animation_268m4"]
+resource_name = "place"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.153825, 0.317271, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(0.9, 0.9, 0.9), Vector3(1.03, 1.03, 1.03), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mch07"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7m2n"]
+_data = {
+"RESET": SubResource("Animation_mch07"),
+"place": SubResource("Animation_268m4")
+}
 
 [node name="Compartment" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_0u0ji")
@@ -48,6 +124,17 @@ pitch_min = 0.9
 pitch_max = 1.1
 
 [node name="model" type="Node3D" parent="."]
+
+[node name="sway_anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vu5v2")
+}
+autoplay = "sway"
+
+[node name="place_anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u7m2n")
+}
 
 [connection signal="sfx_float" from="." to="SFXPlayer_float" method="play_sfx"]
 [connection signal="sfx_place" from="." to="SFXPlayer_place" method="play_sfx"]

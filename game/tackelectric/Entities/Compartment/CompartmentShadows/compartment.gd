@@ -34,6 +34,11 @@ func _ready():
 	if not Engine.is_editor_hint():
 		offsetPos = global_position
 		setMeshColor(Color.GRAY)
+		
+		randomize()
+		await get_tree().create_timer(randf_range(.1,3)).timeout
+		$sway_anim.play("sway", )
+
 
 
 func _input(event: InputEvent) -> void:
@@ -72,8 +77,8 @@ func _process(delta: float) -> void:
 		
 		if not moving:	
 			$MeshInstance3D.global_position = lerp($MeshInstance3D.global_position, offsetPos, .5)
-			$ChildEntities.global_position = lerp($MeshInstance3D.global_position, offsetPos, .5)
-		
+			$ChildEntities.global_position = lerp($ChildEntities.global_position, offsetPos, .5)
+			$model.global_position  = lerp($model.global_position, offsetPos, .5)
 		if selected:
 			var newMousePos = get_viewport().get_mouse_position()
 			setMoveDirection(newMousePos)
@@ -170,19 +175,23 @@ func setMoveDirection(newMousePos):
 # when it is made
 func moveComp():
 	emit_signal("sfx_place")
+	$place_anim.play("place")
 	
 	moving = true
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property($Shadow, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($MeshInstance3D, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property($Shadow, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($ChildEntities, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($model, "global_position", offsetPos, .1).set_trans(Tween.TRANS_CUBIC)
+
 	await tween.finished
-	
+
 	global_position = offsetPos
 	$MeshInstance3D.position = Vector3.ZERO
 	$ChildEntities.position = Vector3.ZERO
 	$Shadow.position = Vector3.ZERO
+	$model.position = Vector3.ZERO
 	
 	# Only move the compartment if the target cell isn't
 	# the same pos as the current pos

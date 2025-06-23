@@ -1,16 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://pv2gusgkgcnd"]
+[gd_scene load_steps=5 format=3 uid="uid://pv2gusgkgcnd"]
 
 [ext_resource type="PackedScene" uid="uid://crl1xgwujjc3c" path="res://Entities/Compartment/Compartment_Base.tscn" id="1_as5vr"]
 [ext_resource type="ArrayMesh" uid="uid://bivnav5jqi4ea" path="res://Entities/Compartment/singleCompartment_1x2_Cube_006.res" id="2_0t3qj"]
 [ext_resource type="Texture2D" uid="uid://drm4ix5r54om1" path="res://Entities/Compartment/CompartmentShadows/CompartmentShadow_2x1.png" id="3_7goco"]
+[ext_resource type="PackedScene" uid="uid://7rke05qt7jml" path="res://Entities/Compartment/CompartmentModelsReal/1x2.glb" id="3_ywe8j"]
 
-[node name="Compartment_1x2" instance=ExtResource("1_as5vr")]
+[node name="Compartment_1x2" node_paths=PackedStringArray("mesh") instance=ExtResource("1_as5vr")]
+mesh = NodePath("model/1x2/singleCompartment_1x2")
 Size = Vector2(1, 2)
 
 [node name="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
 mesh = ExtResource("2_0t3qj")
 
-[node name="Sprite3D" parent="." index="3"]
-transform = Transform3D(-6.55671e-08, 1.5, 6.55671e-08, 0, -6.55671e-08, 1.5, 1.5, 6.55671e-08, 2.86603e-15, 0.002, -0.01, 0.25818)
+[node name="Shadow" parent="." index="3"]
+transform = Transform3D(-6.55671e-08, 1.5, 6.55671e-08, 0, -6.55671e-08, 1.5, 1.5, 6.55671e-08, 2.86603e-15, 0.002, -0.01, 0.002)
+offset = Vector2(18, 0)
 texture = ExtResource("3_7goco")
+
+[node name="1x2" parent="model" index="0" instance=ExtResource("3_ywe8j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[editable path="model/1x2"]
