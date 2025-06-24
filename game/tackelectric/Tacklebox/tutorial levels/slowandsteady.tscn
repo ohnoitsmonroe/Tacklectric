@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8681o5wwy57u"]
+[gd_scene load_steps=8 format=3 uid="uid://c8681o5wwy57u"]
 
 [ext_resource type="PackedScene" uid="uid://bi4at8wkrfg80" path="res://Tacklebox/Tacklebox.tscn" id="1_i5jos"]
 [ext_resource type="PackedScene" uid="uid://bvttia0s2ogkg" path="res://Entities/LineSpawnPoint/SpawnpointFishingLine.tscn" id="2_l3q3h"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://delh0y0jtovjt" path="res://Entities/Compartment/compartment_1x1.tscn" id="4_m2j8x"]
 [ext_resource type="PackedScene" uid="uid://csvfy2ksxqjsi" path="res://Entities/Lure/lure.tscn" id="5_quchi"]
 [ext_resource type="PackedScene" uid="uid://dy06gvg4wqydi" path="res://Entities/FilledSlot/filled_slot.tscn" id="6_xt4b3"]
+
+[sub_resource type="Theme" id="Theme_gc5xt"]
 
 [node name="Tacklebox" instance=ExtResource("1_i5jos")]
 turnMax = 2
@@ -75,6 +77,12 @@ StartingCoord = Vector2(2, 4)
 [node name="filledSlot15" parent="SetupEntities" index="14" instance=ExtResource("6_xt4b3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0, 2.08)
 StartingCoord = Vector2(1, 4)
+
+[node name="MarginContainer" parent="CanvasLayer" index="0"]
+theme = SubResource("Theme_gc5xt")
+
+[node name="TutorialLabel" parent="CanvasLayer/MarginContainer" index="0"]
+theme_override_constants/outline_size = 2
 
 [node name="lure" parent="." index="6" instance=ExtResource("5_quchi")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.6, 0, 0.52)

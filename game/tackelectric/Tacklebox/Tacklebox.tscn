@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=9 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/tacklebox.gd" id="1_prown"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://o14pfryq6hrb" path="res://FishingLine/fishing_rod.tscn" id="6_i4llj"]
 [ext_resource type="Script" path="res://Tacklebox/tutorial_label.gd" id="7_dwt35"]
 [ext_resource type="PackedScene" uid="uid://dd7k27d3it1xd" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
+
+[sub_resource type="Theme" id="Theme_u5541"]
 
 [node name="Tacklebox" type="Node3D"]
 script = ExtResource("1_prown")
@@ -37,6 +39,10 @@ offset_bottom = 648.0
 
 [node name="TutorialLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+theme = SubResource("Theme_u5541")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]tutorial[/center]"
