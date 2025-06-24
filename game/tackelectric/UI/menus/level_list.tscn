@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://o6n60in8h477"]
+[gd_scene load_steps=6 format=3 uid="uid://o6n60in8h477"]
 
 [ext_resource type="Script" path="res://UI/menus/level_list.gd" id="1_yn58f"]
+[ext_resource type="PackedScene" uid="uid://c8681o5wwy57u" path="res://Tacklebox/tutorial levels/slowandsteady.tscn" id="2_fm0n2"]
 [ext_resource type="PackedScene" uid="uid://os7g5t3vxmd2" path="res://Tacklebox/milton levels/tacklebox_milton_002.tscn" id="2_ov5vr"]
 [ext_resource type="PackedScene" uid="uid://4nn1t00uy7h" path="res://Tacklebox/danny levels/01_whatisalevel.tscn" id="3_lmgxy"]
 [ext_resource type="PackedScene" uid="uid://b6gbisw1wpqkn" path="res://UI/buttons/list_button.tscn" id="3_vjjcy"]
@@ -9,5 +10,5 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_yn58f")
-levels = Array[PackedScene]([ExtResource("2_ov5vr"), ExtResource("3_lmgxy")])
+levels = Array[PackedScene]([ExtResource("2_fm0n2"), ExtResource("2_ov5vr"), ExtResource("3_lmgxy")])
 listButton = ExtResource("3_vjjcy")

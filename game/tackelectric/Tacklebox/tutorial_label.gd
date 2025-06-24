@@ -22,7 +22,6 @@ Hold ESC at any time to go back to the previous menu, or quit the game if in the
 func _ready() -> void:
 	modulate.a = 0.0
 	#await timer.timeout
-	tween.tween_property(self, "modulate:a", 1.0, 5.0).set_delay(5.0)
 	
 	g.move_tutorial.connect(move_tutorial)
 	g.cast_tutorial.connect(cast_tutorial)
@@ -30,12 +29,18 @@ func _ready() -> void:
 	
 	if g.didMoveTutorial == false:
 		set_text(moveTutorial)
-	elif g.didCastTutorial == false && g.didMoveTutorial == true:
+		tween.tween_property(self, "modulate:a", 1.0, 5.0).set_delay(2.5)
+	elif g.didCastTutorial == false:
 		set_text(castTutorial)
-	elif g.didRetryTutorial == false && g.didCastTutorial == true && g.didMoveTutorial == true:
+		tween.tween_property(self, "modulate:a", 1.0, 5.0).set_delay(2.5)
+	elif g.didRetryTutorial == false:
 		set_text(retryTutorial)
+		tween.tween_property(self, "modulate:a", 1.0, 5.0).set_delay(2.5)
 	else:
-		visible = false
+		modulate.a = 1.0
+		set_text("[center][color=#000000]Now try to reach the fish! Good luck, and thank you for playing our game.[/color][/center]")
+		tween.tween_property(self, "modulate:a", 0.0, 5.0).set_delay(2.5)
+		tween.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,5 +59,5 @@ func cast_tutorial() -> void:
 
 func retry_tutorial() -> void:
 	didRetryTut = true
-	tween.tween_property(self, "modulate:a", 0.0, 5.0)
-	tween.play()
+	#tween.tween_property(self, "modulate:a", 0.0, 5.0)
+	#tween.play()

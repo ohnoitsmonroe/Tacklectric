@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 func _input(event):
 	match g.currentScene:
 		menu:
-			set_text("[center]keep holding escape to go to quit[/center]")
+			set_text("[center]keep holding escape to quit the game[/center]")
 		options:
 			set_text("[center]keep holding escape to go back to the main menu[/center]")
 		levels:
