@@ -25,7 +25,6 @@ func _ready() -> void:
 	else:
 		visible = true
 	modulate.a = 0.0
-	#await timer.timeout
 	
 	g.move_tutorial.connect(move_tutorial)
 	g.cast_tutorial.connect(cast_tutorial)
