@@ -65,6 +65,11 @@ func loadLevel(level) -> void:
 
 func restartLevel() -> void:
 	print("Restarting level")
+	
+	if g.didRetryTutorial == false:
+		g.didRetryTutorial = true
+		g.retryTutorial()
+		
 	loadLevel(g.currentScene)
 	g.selectingCompartment = false
 

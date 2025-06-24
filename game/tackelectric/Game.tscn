@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cyyx0f4dibk6i" path="res://UI/winText/win_text.tscn" id="5_kdxma"]
 [ext_resource type="PackedScene" uid="uid://c11i1ei6bhd7a" path="res://Tacklebox/camera_pivot.tscn" id="6_d2og8"]
 [ext_resource type="PackedScene" uid="uid://cep30mtltyrex" path="res://Tacklebox/tacklebox_model.tscn" id="7_ffaye"]
-[ext_resource type="PackedScene" uid="uid://cqr12wdhbglf" path="res://World/Log.glb" id="7_xnbnb"]
+[ext_resource type="PackedScene" uid="uid://c60tg43e0qehn" path="res://World/Log.glb" id="7_xnbnb"]
 [ext_resource type="Script" path="res://escape_label.gd" id="9_kynbr"]
-[ext_resource type="PackedScene" uid="uid://bfp4gyoflj4ke" path="res://World/LilyPad_2.glb" id="9_l50wd"]
+[ext_resource type="PackedScene" uid="uid://w84gpvauop23" path="res://World/LilyPad_2.glb" id="9_l50wd"]
 [ext_resource type="Shader" path="res://Tacklebox/tacklebox_model.gdshader" id="10_icvag"]
-[ext_resource type="Texture2D" uid="uid://bh3q2npbdk28k" path="res://water.png" id="11_awmb2"]
+[ext_resource type="Texture2D" uid="uid://bl0ikiprfapee" path="res://water.png" id="11_awmb2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ymo4t"]
 render_priority = 0
@@ -144,19 +144,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77514, 2.25, 2.52878)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-offset_left = 904.0
-offset_right = 1152.0
+offset_left = 384.0
+offset_right = 768.0
 offset_bottom = 24.0
 
 [node name="EscapeLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
-visible = false
 layout_mode = 2
-text = "keep holding escape to go back"
+bbcode_enabled = true
+text = "[right]keep holding escape to go back[/right]"
+fit_content = true
 script = ExtResource("9_kynbr")
 
 [node name="EscapeTimer" type="Timer" parent="CanvasLayer/MarginContainer/EscapeLabel"]
 wait_time = 3.0
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer/EscapeLabel"]
+show_behind_parent = true
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0.282353, 0.282353, 0.282353, 0.733333)
 
 [connection signal="timeout" from="CanvasLayer/MarginContainer/EscapeLabel/EscapeTimer" to="CanvasLayer/MarginContainer/EscapeLabel" method="_on_escape_timer_timeout"]
 
