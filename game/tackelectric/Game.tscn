@@ -144,7 +144,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77514, 2.25, 2.52878)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 1152.0
+offset_left = 384.0
+offset_right = 768.0
 offset_bottom = 24.0
 
 [node name="EscapeLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
@@ -157,6 +158,13 @@ script = ExtResource("9_kynbr")
 [node name="EscapeTimer" type="Timer" parent="CanvasLayer/MarginContainer/EscapeLabel"]
 wait_time = 3.0
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer/EscapeLabel"]
+show_behind_parent = true
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0.282353, 0.282353, 0.282353, 0.733333)
 
 [connection signal="timeout" from="CanvasLayer/MarginContainer/EscapeLabel/EscapeTimer" to="CanvasLayer/MarginContainer/EscapeLabel" method="_on_escape_timer_timeout"]
 

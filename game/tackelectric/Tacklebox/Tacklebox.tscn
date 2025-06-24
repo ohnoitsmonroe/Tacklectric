@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi4at8wkrfg80"]
+[gd_scene load_steps=8 format=3 uid="uid://bi4at8wkrfg80"]
 
 [ext_resource type="PackedScene" uid="uid://cap2r0kkoynwh" path="res://Tacklebox/Grid.tscn" id="1_adigq"]
 [ext_resource type="Script" path="res://Tacklebox/tacklebox.gd" id="1_prown"]
 [ext_resource type="Script" path="res://Tacklebox/SetupEntities.gd" id="2_j68ua"]
 [ext_resource type="PackedScene" uid="uid://cmg62167gski0" path="res://Tacklebox/TurnLight/turn_light.tscn" id="2_trjr1"]
 [ext_resource type="PackedScene" uid="uid://o14pfryq6hrb" path="res://FishingLine/fishing_rod.tscn" id="6_i4llj"]
+[ext_resource type="Script" path="res://Tacklebox/tutorial_label.gd" id="7_dwt35"]
 [ext_resource type="PackedScene" uid="uid://dd7k27d3it1xd" path="res://Tacklebox/referenceGrid.tscn" id="7_vae3t"]
 
 [node name="Tacklebox" type="Node3D"]
@@ -32,13 +33,16 @@ transform = Transform3D(0.998821, -0.0485535, 0, 0.0485535, 0.998821, 0, 0, 0, 1
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 offset_top = 512.0
 offset_right = 1152.0
-offset_bottom = 576.0
+offset_bottom = 648.0
 
 [node name="TutorialLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]tutorial[/center]"
+script = ExtResource("7_dwt35")
 
 [node name="TutorialTimer" type="Timer" parent="CanvasLayer/MarginContainer/TutorialLabel"]
+wait_time = 10.0
 
 [connection signal="turnTaken" from="Grid" to="." method="increaseTurnCount"]
