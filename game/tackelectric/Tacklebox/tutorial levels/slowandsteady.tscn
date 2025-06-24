@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dy06gvg4wqydi" path="res://Entities/FilledSlot/filled_slot.tscn" id="6_xt4b3"]
 
 [node name="Tacklebox" instance=ExtResource("1_i5jos")]
-turnMax = 3
+turnMax = 2
 
 [node name="lineSpawnPoint" parent="SetupEntities" index="0" instance=ExtResource("2_l3q3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.52)

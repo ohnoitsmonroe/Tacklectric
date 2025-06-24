@@ -16,6 +16,7 @@ var selectingCompartment := false
 var didMoveTutorial := false
 var didCastTutorial := false
 var didRetryTutorial := false
+var sawLastTutorial := false
 
 
 
