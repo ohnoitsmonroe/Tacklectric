@@ -27,4 +27,18 @@ script = ExtResource("2_j68ua")
 [node name="fishingRod" parent="." instance=ExtResource("6_i4llj")]
 transform = Transform3D(0.998821, -0.0485535, 0, 0.0485535, 0.998821, 0, 0, 0, 1, -2.06784, 0, 0.481415)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_top = 512.0
+offset_right = 1152.0
+offset_bottom = 576.0
+
+[node name="TutorialLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]tutorial[/center]"
+
+[node name="TutorialTimer" type="Timer" parent="CanvasLayer/MarginContainer/TutorialLabel"]
+
 [connection signal="turnTaken" from="Grid" to="." method="increaseTurnCount"]
