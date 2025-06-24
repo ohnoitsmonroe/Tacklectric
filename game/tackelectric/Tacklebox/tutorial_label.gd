@@ -12,7 +12,7 @@ Lures without a plank cannot be moved.
 You can move multiple tiles in one turn, but only in one direction.[/color][/center]"
 
 var castTutorial : String = "[center][color=#000000]Press spacebar to cast the fishing line from the top left.
-It will travel the path shown by the lures. Your goal is to reach the fish on the bottom right.
+It will travel the path shown by the lures. Your goal is to reach the fish on the right.
 You have as many turns as there red lights on the left side of the tacklebox.[/color][/center]"
 
 var retryTutorial : String = "[center][color=#000000]Press R to restart the level at any time.
