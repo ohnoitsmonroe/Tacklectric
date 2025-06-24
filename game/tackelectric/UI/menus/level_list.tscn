@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://o6n60in8h477"]
+[gd_scene load_steps=8 format=3 uid="uid://o6n60in8h477"]
 
 [ext_resource type="Script" path="res://UI/menus/level_list.gd" id="1_yn58f"]
 [ext_resource type="PackedScene" uid="uid://c8681o5wwy57u" path="res://Tacklebox/tutorial levels/slowandsteady.tscn" id="2_fm0n2"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://4nn1t00uy7h" path="res://Tacklebox/danny levels/01_whatisalevel.tscn" id="3_lmgxy"]
 [ext_resource type="PackedScene" uid="uid://b6gbisw1wpqkn" path="res://UI/buttons/list_button.tscn" id="3_vjjcy"]
 [ext_resource type="PackedScene" uid="uid://byaxkdme5ltfg" path="res://Tacklebox/jim levels/JimLevel_01.tscn" id="5_7ainr"]
+[ext_resource type="PackedScene" uid="uid://bsvliquyrogqs" path="res://Tacklebox/danny levels/02_theendisthebeginning.tscn" id="6_ufypw"]
 
 [node name="LevelList" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_yn58f")
-levels = Array[PackedScene]([ExtResource("2_fm0n2"), ExtResource("2_ov5vr"), ExtResource("3_lmgxy"), ExtResource("5_7ainr")])
+levels = Array[PackedScene]([ExtResource("2_fm0n2"), ExtResource("2_ov5vr"), ExtResource("3_lmgxy"), ExtResource("5_7ainr"), ExtResource("6_ufypw")])
 listButton = ExtResource("3_vjjcy")
