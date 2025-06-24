@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04, 0, 1.56)
 StartingCoord = Vector2(2, 3)
 
 [node name="lure" parent="SetupEntities" index="3" instance=ExtResource("5_6eb6b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 StartingCoord = Vector2(5, 0)
 startingDirection = 0
 
@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 startingDirection = 0
 
 [node name="lure2" parent="SetupEntities" index="5" instance=ExtResource("5_6eb6b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.52, 0, 2.08)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 StartingCoord = Vector2(1, 4)
 startingDirection = 90
 
@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.52)
 StartingCoord = Vector2(0, 1)
 
 [node name="lure" parent="SetupEntities/Compartment_2x2" index="10" instance=ExtResource("5_6eb6b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.52, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 StartingCoord = Vector2(1, 0)
 startingDirection = 90
 
