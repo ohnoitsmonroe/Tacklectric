@@ -41,11 +41,14 @@ func _ready() -> void:
 		set_text("[center][color=#000000]Now try to reach the fish! Good luck, and thank you for playing our game.[/color][/center]")
 		tween.tween_property(self, "modulate:a", 0.0, 5.0).set_delay(2.5)
 		tween.play()
-
+		g.sawLastTutorial = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if g.sawLastTutorial == true:
+		visible = false
+	else:
+		visible = true
 	
 func move_tutorial() -> void:
 	didMoveTut = true

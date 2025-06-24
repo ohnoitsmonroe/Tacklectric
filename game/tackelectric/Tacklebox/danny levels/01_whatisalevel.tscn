@@ -82,6 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12, 0, 2.08)
 StartingCoord = Vector2(6, 4)
 
 [node name="lure2" parent="SetupEntities/Compartment_1x3" index="9" instance=ExtResource("3_0l8vn")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="lure2" parent="SetupEntities" index="17" instance=ExtResource("3_0l8vn")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
