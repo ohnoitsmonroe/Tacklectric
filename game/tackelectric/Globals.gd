@@ -13,6 +13,10 @@ var levelList:Array[PackedScene]
 
 var selectingCompartment := false
 
+var didMoveTutorial := false
+var didCastTutorial := false
+var didRetryTutorial := false
+
 
 
 # Global signals so they can be triggered from multiple entities
@@ -22,6 +26,10 @@ signal level_loaded
 signal playMode
 signal attractMode
 signal winText
+
+signal move_tutorial
+signal cast_tutorial
+signal retry_tutorial
 
 signal cast
 
@@ -48,7 +56,15 @@ func startPlayMode():
 
 func startAttractMode():
 	emit_signal("attractMode")
+	
+func moveTutorial():
+	emit_signal("move_tutorial")
+	
+func castTutorial():
+	emit_signal("cast_tutorial")
 
+func retryTutorial():
+	emit_signal("retry_tutorial")
 
 func game_over():
 	print("Game over!")

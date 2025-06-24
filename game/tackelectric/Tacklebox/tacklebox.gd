@@ -32,6 +32,9 @@ func updateTurnLights():
 	for i in turnCount:
 		if is_instance_valid(turnLights[i]):
 			turnLights[i].setActive()
+			if g.didMoveTutorial == false:
+				g.didMoveTutorial = true
+				g.moveTutorial()
 
 
 func addLights():
